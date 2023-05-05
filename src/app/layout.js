@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Login from "@/components/Login";
 import Header from "../components/Header";
@@ -12,14 +12,9 @@ const metadata = {
 
 export default function RootLayout({ children }) {
   const [user, setUser] = useState(null);
-  let data = null;
 
-  useEffect(() => {
-    data = JSON.parse(localStorage.getItem("user"));
-    setUser(data);
-  }, []);
+  useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
 
-  
   return (
     <html lang="en">
       <body className="flex flex-col h-screen">
