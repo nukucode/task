@@ -55,24 +55,24 @@ function Todo({ title, colorCode, isCompleted, timestamp, id }) {
     <div className="flex gap-3 bg-[#20212c] p-2 rounded-[15px]">
       <div>
         {!isCompleted ? (
-          <div
+          <button
             onClick={() => updateTask(!isCompleted)}
             className="border-2 border-[#58D68D] w-6 h-6 rounded-[10px] cursor-pointer"
-          ></div>
+          ></button>
         ) : (
-          <div
+          <button
             onClick={() => updateTask(!isCompleted)}
             className="border-2 border-[#58D68D] bg-[#58D68D] w-6 h-6 rounded-[10px] cursor-pointer"
           >
             <CheckIcon className="text-black w-5 h-5" />
-          </div>
+          </button>
         )}
       </div>
       <div className="flex-1">
         <p
-          className={`text-[17px] text-gray-200 ${
+          className={`text-[15px] text-gray-200 ${
             isCompleted && "line-through text-gray-400"
-          }`}
+          } sm:text-[17px]`}
         >
           {title}
         </p>

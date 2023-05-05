@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export default function Header({data}) {
   return (
-    <header className="h-[60px] bg-[#20212c] flex items-center justify-between p-5 shadow-xl shadow-black border-b-2 border-gray-900">
+    <header className="h-[60px] bg-[#20212c] flex items-center justify-between p-5">
       <div>
         <h1 className="logo">raoankit</h1>
       </div>

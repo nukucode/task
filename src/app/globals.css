@@ -27,35 +27,38 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-    font-family: "Montserrat";
-    font-weight: 500;
-    
+  font-family: "Montserrat";
+  font-weight: 500;
 }
 
-
-html{
+html {
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.logo{
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.logo {
   font-family: "Pacifico";
   font-size: 30px;
 }
 
 /* Icon Button Style */
 
-.icon{
+.icon {
   @apply h-6 w-6 text-gray-300 cursor-pointer;
 }
 
-.header-left-li{
-  @apply flex gap-2
+.header-left-li {
+  @apply flex gap-2;
 }
 
-.sidebar-item-label{
-  @apply p-5 font-bold text-gray-200 text-[18px]
+.sidebar-item-label {
+  @apply p-5 font-bold text-gray-200 text-[18px];
 }
 
-.trashIcon{
+.trashIcon {
   color: var(--color);
 }
