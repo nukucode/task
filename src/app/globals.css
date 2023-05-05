@@ -1,0 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Pacifico:regular);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+    font-family: "Montserrat";
+    font-weight: 500;
+    
+}
+
+
+html{
+  user-select: none;
+}
+
+.logo{
+  font-family: "Pacifico";
+  font-size: 30px;
+}
+
+/* Icon Button Style */
+
+.icon{
+  @apply h-6 w-6 text-gray-300 cursor-pointer;
+}
+
+.header-left-li{
+  @apply flex gap-2
+}
+
+.sidebar-item-label{
+  @apply p-5 font-bold text-gray-200 text-[18px]
+}
+
+.trashIcon{
+  color: var(--color);
+}
