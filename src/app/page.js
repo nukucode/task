@@ -36,7 +36,7 @@ export default function Task() {
 
   return (
     <div className="">
-      <div className="max-w-3xl mx-auto text-white p-5">
+      <div className="max-w-3xl mx-auto text-white py-5 px-3">
         <Title title="Tasks" />
         <Input />
         <div className="mt-10 flex flex-col gap-3">

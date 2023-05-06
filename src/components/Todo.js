@@ -157,7 +157,7 @@ function Todo({ title, colorCode, isCompleted, timestamp, id }) {
           </div>
         </div>
         {/* Delete Button */}
-        <div className="self-center pr-5 flex items-center gap-5">
+        <div className="self-center pr-5 flex items-center gap-3">
           <button onClick={deleteTask}>
             <TrashIcon
               className={`w-6 h-6 hover:text-gray-100 hover:animate-pulse trashIcon duration-200 transition-all`}
