@@ -21,12 +21,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #17181f;
   font-family: "Montserrat";
   font-weight: 500;
 }
@@ -37,8 +32,16 @@ html {
 }
 
 * {
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
+
+
+/* CUSTOM SCROLLBAR */
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
 
 .logo {
   font-family: "Pacifico";
@@ -60,5 +63,13 @@ html {
 }
 
 .trashIcon {
+  color: var(--color);
+}
+
+.addMoreIcon:hover{
+  color: var(--color);
+}
+
+.subTaskCount{
   color: var(--color);
 }

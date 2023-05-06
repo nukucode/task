@@ -1,7 +1,6 @@
 "use client";
 
 import Login from "@/components/Login";
-import Header from "../components/Header";
 import "./globals.css";
 import { useEffect, useState } from "react";
 
@@ -17,18 +16,13 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className="flex flex-col h-screen">
+      <body>
         {!user ? (
           <Login />
         ) : (
-          <>
-            {/* Header */}
-            <Header data={user} />
-            {/* SCREEN */}
-            <div className="flex flex-row bg-[#17181f] h-full">
-              <div className="flex-1">{children}</div>
-            </div>
-          </>
+          <div className="flex flex-row">
+            <div className="flex-1">{children}</div>
+          </div>
         )}
       </body>
     </html>
