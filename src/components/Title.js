@@ -9,7 +9,7 @@ export default function Title({ title, leftIcon }) {
     <div className="flex items-center justify-between py-5 pb-10">
       <div
         onClick={() => {
-          router.back();
+          router.push("/");
         }}
         className="flex items-center cursor-pointer"
       >

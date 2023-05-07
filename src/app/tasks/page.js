@@ -44,6 +44,7 @@ function Tasks() {
               timestamp={task.data.timestamp}
               title={task.data.task}
               id={task.id}
+              isShowDate={true}
             />
           ))}
       </div>

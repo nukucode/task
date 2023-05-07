@@ -20,7 +20,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/config";
 
-function Todo({ title, colorCode, isCompleted, timestamp, id }) {
+function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   const [user, setUser] = useState(null);
   const [isAdd, setIsAdd] = useState(false);
   const [subTask, setSubTask] = useState("");
@@ -54,12 +54,24 @@ function Todo({ title, colorCode, isCompleted, timestamp, id }) {
   useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
 
   // => Convert Timestamp to Weekday
-  function formatDate(date) {
+  function formatWeekDay(date) {
     const formatDate = new Date(
       date?.seconds * 1000 + date?.nanoseconds / 1000000
     );
     return formatDate.toLocaleDateString("en-us", {
       weekday: "long",
+    });
+  }
+
+  // => Convert Timestamp to Date
+  function formatDate(date) {
+    const formatDate = new Date(
+      date?.seconds * 1000 + date?.nanoseconds / 1000000
+    );
+    return formatDate.toLocaleDateString("en-in", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
   }
 
@@ -107,14 +119,22 @@ function Todo({ title, colorCode, isCompleted, timestamp, id }) {
 
   // => Delete Sub Task
   const deleteSubTask = (subTaskDocId) => {
-  const docRef = doc(db, "tasks", user.uid, "tasks", id, "subTasks", subTaskDocId);
-  deleteDoc(docRef)
-    .then(() => {
-      console.log("Entire Document has been deleted successfully.");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+    const docRef = doc(
+      db,
+      "tasks",
+      user.uid,
+      "tasks",
+      id,
+      "subTasks",
+      subTaskDocId
+    );
+    deleteDoc(docRef)
+      .then(() => {
+        console.log("Entire Document has been deleted successfully.");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -151,7 +171,7 @@ function Todo({ title, colorCode, isCompleted, timestamp, id }) {
                 style={{ color: colorCode }}
                 className="text-[15px] font-bold"
               >
-                {formatDate(timestamp)}
+                {isShowDate ? formatDate(timestamp) : formatWeekDay(timestamp)}
               </span>
             </div>
           </div>
