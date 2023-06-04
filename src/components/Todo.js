@@ -1,5 +1,6 @@
 "use client";
 import {
+  ArrowUturnRightIcon,
   CalendarIcon,
   ChevronDownIcon,
   PaperAirplaneIcon,
@@ -22,7 +23,7 @@ import { db } from "@/firebase/config";
 
 function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   const [user, setUser] = useState(null);
-  const [isAdd, setIsAdd] = useState(false);
+  const [isAdd, setIsAdd] = useState(true);
   const [subTask, setSubTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
@@ -107,14 +108,18 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   // => Add Sub Task In Firebase Fire-Store
   const addSubTask = (e) => {
     e.preventDefault();
-    const docRef = doc(db, "tasks", user.uid);
-    const colRef = collection(docRef, "tasks", id, "subTasks");
-    addDoc(colRef, {
-      task: subTask,
-      timestamp: serverTimestamp(),
-    });
+    if (subTask != "" && subTask.length >= 3) {
+      const docRef = doc(db, "tasks", user.uid);
+      const colRef = collection(docRef, "tasks", id, "subTasks");
+      addDoc(colRef, {
+        task: subTask,
+        timestamp: serverTimestamp(),
+      });
 
-    setSubTask("");
+      setSubTask("");
+    } else {
+      alert("Please Add SubTask...")
+    }
   };
 
   // => Delete Sub Task
@@ -164,16 +169,40 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
             {title}
           </p>
           {/* Category and timestamp */}
-          <div className="flex items-center gap-3">
-            <div className="flex gap-2 items-center mt-1">
-              <CalendarIcon className="h-5 w-5" style={{ color: colorCode }} />
-              <span
-                style={{ color: colorCode }}
-                className="text-[15px] font-bold"
-              >
-                {isShowDate ? formatDate(timestamp) : formatWeekDay(timestamp)}
-              </span>
+          <div className="flex flex-row items-center gap-5">
+            <div className="flex items-center gap-3">
+              <div className="flex gap-2 items-center mt-1">
+                <CalendarIcon
+                  className="h-5 w-5"
+                  style={{ color: colorCode }}
+                />
+                <span
+                  style={{ color: colorCode }}
+                  className="text-[15px] font-bold"
+                >
+                  {isShowDate
+                    ? formatDate(timestamp)
+                    : formatWeekDay(timestamp)}
+                </span>
+              </div>
             </div>
+
+            {tasks.length >= 1 && (
+              <div className="flex items-center gap-3">
+                <div className="flex gap-2 items-center mt-1">
+                  <ArrowUturnRightIcon
+                    className="h-5 w-5"
+                    style={{ color: colorCode }}
+                  />
+                  <span
+                    style={{ color: "grey" }}
+                    className="text-[15px] font-bold"
+                  >
+                    {tasks.length + " SubTask"}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         {/* Delete Button */}
@@ -187,68 +216,71 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
             />
           </button>
 
-          <button onClick={() => setIsAdd(!isAdd)}>
-            <ChevronDownIcon
-              className={`w-6 h-6 text-gray-300 hover:animate-pulse addMoreIcon duration-200 transition-all`}
-              style={{
-                "--color": colorCode,
-              }}
-            />
-          </button>
+          {!isCompleted && (
+            <button onClick={() => setIsAdd(!isAdd)}>
+              <ChevronDownIcon
+                className={`w-6 h-6 text-gray-300 hover:animate-pulse addMoreIcon duration-200 transition-all`}
+                style={{
+                  "--color": colorCode,
+                }}
+              />
+            </button>
+          )}
         </div>
         {/* ADD MORE INPUT */}
       </div>
       {/* Sub Tasks */}
-      {isAdd && (
-        <>
-          <div className="m-5">
-            {tasks.map((task, i) => (
-              <div key={i} className="flex items-center gap-1 mb-1">
-                <span
-                  className="font-bold subTaskCount"
-                  style={{ "--color": colorCode }}
-                >
-                  {i}.
-                </span>
-                <p
-                  className={`text-gray-300 flex-1 ${
-                    isCompleted && "line-through text-gray-500"
-                  }`}
-                >
-                  {task.data.task}
-                </p>
-                <button
-                  onClick={() => deleteSubTask(task.id)}
-                  className="text-[14px] text-blue-500 hover:text-blue-300 duration-100 transition-all "
-                >
-                  Delete
-                </button>
-              </div>
-            ))}
-          </div>
+      {isAdd ||
+        (!isCompleted && (
+          <>
+            <div className="m-5">
+              {tasks.map((task, i) => (
+                <div key={i} className="flex items-center gap-1 mb-1">
+                  <span
+                    className="font-bold subTaskCount"
+                    style={{ "--color": colorCode }}
+                  >
+                    {i}.
+                  </span>
+                  <p
+                    className={`text-gray-300 flex-1 ${
+                      isCompleted && "line-through text-gray-500"
+                    }`}
+                  >
+                    {task.data.task}
+                  </p>
+                  <button
+                    onClick={() => deleteSubTask(task.id)}
+                    className="text-[14px] text-blue-500 hover:text-blue-300 duration-100 transition-all "
+                  >
+                    Delete
+                  </button>
+                </div>
+              ))}
+            </div>
 
-          <form
-            onSubmit={(e) => addSubTask(e)}
-            className="m-5 flex items-center rounded-lg  border border-gray-500 p-3"
-          >
-            <input
-              type="text"
-              name="addMore"
-              id="addMore"
-              value={subTask}
-              onChange={(e) => setSubTask(e.target.value)}
-              placeholder="Add Sub Tasks"
-              className="w-full h-full outline-none bg-transparent focus:border-gray-100 duration-200 transition-all"
-              autoComplete="off"
-            />
+            <form
+              onSubmit={(e) => addSubTask(e)}
+              className="m-5 flex items-center rounded-lg  border border-gray-500 p-3"
+            >
+              <input
+                type="text"
+                name="addMore"
+                id="addMore"
+                value={subTask}
+                onChange={(e) => setSubTask(e.target.value)}
+                placeholder="Add Sub Tasks"
+                className="w-full h-full outline-none bg-transparent focus:border-gray-100 duration-200 transition-all"
+                autoComplete="off"
+              />
 
-            <PaperAirplaneIcon
-              onClick={addSubTask}
-              className="h-6 text-gray-200 -rotate-[25deg]"
-            />
-          </form>
-        </>
-      )}
+              <PaperAirplaneIcon
+                onClick={addSubTask}
+                className="h-6 text-gray-200 -rotate-[25deg]"
+              />
+            </form>
+          </>
+        ))}
     </div>
   );
 }

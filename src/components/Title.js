@@ -20,12 +20,14 @@ export default function Title({ title, leftIcon }) {
 
         <h1 className="font-bold text-[25px]">{title}</h1>
       </div>
-      <EllipsisHorizontalIcon
-        onClick={() => {
-          router.push("/tasks");
-        }}
-        className="icon text-gray-400"
-      />
+      <div label="More">
+        <EllipsisHorizontalIcon
+          onClick={() => {
+            router.push("/tasks");
+          }}
+          className="icon text-gray-400"
+        />
+      </div>
     </div>
   );
 }

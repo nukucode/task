@@ -1,33 +1,44 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { db } from "@/firebase/config";
-import { collection, addDoc, serverTimestamp, setDoc, doc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, doc } from "firebase/firestore";
 import { colors } from "@/utils/colors";
 
 function Input() {
   const [user, setUser] = useState(null);
-
+  const inputRef = useRef();
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  
+
+  /* Get User From LocalStorage */
   useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
 
+  /* Add Task In Firebase */
   const taskHandler = (e) => {
     setIsLoading(true);
     e.preventDefault();
-    const docRef = doc(db, "tasks", user.uid);
-    const colRef = collection(docRef, "tasks");
-    addDoc(colRef, {
-      task: input,
-      timestamp: serverTimestamp(),
-      colorCode: colors[Math.floor(Math.random() * colors.length)],
-      isCompleted: false,
-    });
-    setIsLoading(false);
-    setInput("");
+    if (input != "" && input.length >= 5) {
+      const docRef = doc(db, "tasks", user.uid);
+      const colRef = collection(docRef, "tasks");
+      addDoc(colRef, {
+        task: input,
+        timestamp: serverTimestamp(),
+        colorCode: colors[Math.floor(Math.random() * colors.length)],
+        isCompleted: false,
+      });
+      setIsLoading(false);
+      setInput("");
+    } else {
+      alert("Please Fill Properly");
+    }
   };
+
+  /* Input Default Focus */
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   return (
     <>
       {!isLoading ? (
@@ -39,6 +50,7 @@ function Input() {
             <PlusIcon className="h-5 text-black" />
           </div>
           <input
+            ref={inputRef}
             type="text"
             name="search"
             id="search"
