@@ -28,11 +28,11 @@ function Input() {
         colorCode: colors[Math.floor(Math.random() * colors.length)],
         isCompleted: false,
       });
-      setIsLoading(false);
       setInput("");
     } else {
       alert("Please Fill Properly");
     }
+    setIsLoading(false);
   };
 
   /* Input Default Focus */
@@ -41,32 +41,27 @@ function Input() {
   }, []);
   return (
     <>
-      {!isLoading ? (
-        <form
-          onSubmit={(e) => taskHandler(e)}
-          className="flex items-center gap-3 border border-gray-700 px-3 py-3 rounded-2xl"
-        >
-          <div className="bg-[#58D68D] rounded-lg w-6 h-6 flex items-center justify-center">
-            <PlusIcon className="h-5 text-black" />
-          </div>
-          <input
-            ref={inputRef}
-            type="text"
-            name="search"
-            id="search"
-            className="bg-transparent border-none outline-none w-full h-full"
-            placeholder="Add a task"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            spellCheck={true}
-            autoComplete="off"
-          />
-        </form>
-      ) : (
-        <div>
-          <h1>Task Added</h1>
+      <form
+        onSubmit={(e) => taskHandler(e)}
+        className="flex items-center gap-3 border border-gray-700 px-3 py-3 rounded-2xl"
+      >
+        <div className="bg-[#58D68D] rounded-lg w-6 h-6 flex items-center justify-center">
+          <PlusIcon className="h-5 text-black" />
         </div>
-      )}
+        <input
+          ref={inputRef}
+          type="text"
+          name="search"
+          id="search"
+          className="bg-transparent border-none outline-none w-full h-full"
+          placeholder="Add a task"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          spellCheck={true}
+          autoComplete="off"
+          disabled={isLoading ? true : false}
+        />
+      </form>
     </>
   );
 }

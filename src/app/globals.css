@@ -73,3 +73,7 @@ body::-webkit-scrollbar {
 .subTaskCount{
   color: var(--color);
 }
+
+.menu-button{
+  @apply flex flex-row items-center gap-2 py-3 px-5 hover:bg-gray-500 
+}

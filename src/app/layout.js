@@ -3,6 +3,7 @@
 import Login from "@/components/Login";
 import "./globals.css";
 import { useEffect, useState } from "react";
+import Footer from "@/components/Footer";
 
 const metadata = {
   title: "Task App Using Next.Js",
@@ -20,8 +21,11 @@ export default function RootLayout({ children }) {
         {!user ? (
           <Login />
         ) : (
-          <div className="flex flex-row">
-            <div className="flex-1">{children}</div>
+          <div>
+            <div className="flex flex-row">
+              <div className="flex-1">{children}</div>
+            </div>
+            <Footer />
           </div>
         )}
       </body>

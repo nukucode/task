@@ -20,10 +20,11 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase/config";
+import { motion } from "framer-motion";
 
 function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   const [user, setUser] = useState(null);
-  const [isAdd, setIsAdd] = useState(true);
+  const [isAdd, setIsAdd] = useState(false);
   const [subTask, setSubTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
@@ -118,7 +119,7 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
 
       setSubTask("");
     } else {
-      alert("Please Add SubTask...")
+      alert("Please Add SubTask...");
     }
   };
 
@@ -143,7 +144,24 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   };
 
   return (
-    <div className="bg-[#20212c] rounded-[15px] dura transition-all">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: {
+          scale: 0.8,
+          opacity: 0,
+        },
+        visible: {
+          scale: 1,
+          opacity: 1,
+          transition: {
+            delay: 0.3,
+          },
+        },
+      }}
+      className="bg-[#20212c] rounded-[15px] dura transition-all"
+    >
       <div className="flex gap-3 p-2">
         <div>
           {!isCompleted ? (
@@ -216,25 +234,23 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
             />
           </button>
 
-          {!isCompleted && (
-            <button onClick={() => setIsAdd(!isAdd)}>
-              <ChevronDownIcon
-                className={`w-6 h-6 text-gray-300 hover:animate-pulse addMoreIcon duration-200 transition-all`}
-                style={{
-                  "--color": colorCode,
-                }}
-              />
-            </button>
-          )}
+          <button onClick={() => setIsAdd(!isAdd)}>
+            <ChevronDownIcon
+              className={`w-6 h-6 text-gray-300 hover:animate-pulse addMoreIcon duration-200 transition-all`}
+              style={{
+                "--color": colorCode,
+              }}
+            />
+          </button>
         </div>
         {/* ADD MORE INPUT */}
       </div>
       {/* Sub Tasks */}
-      {isAdd ||
-        (!isCompleted && (
-          <>
-            <div className="m-5">
-              {tasks.map((task, i) => (
+      {isAdd && (
+        <>
+          <div className="m-5">
+            {tasks.length > 0 &&
+              tasks.map((task, i) => (
                 <div key={i} className="flex items-center gap-1 mb-1">
                   <span
                     className="font-bold subTaskCount"
@@ -257,8 +273,9 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
                   </button>
                 </div>
               ))}
-            </div>
+          </div>
 
+          {isAdd && !isCompleted && (
             <form
               onSubmit={(e) => addSubTask(e)}
               className="m-5 flex items-center rounded-lg  border border-gray-500 p-3"
@@ -279,9 +296,10 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
                 className="h-6 text-gray-200 -rotate-[25deg]"
               />
             </form>
-          </>
-        ))}
-    </div>
+          )}
+        </>
+      )}
+    </motion.div>
   );
 }
 

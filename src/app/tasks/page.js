@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Title from "@/components/Title";
 import Todo from "@/components/Todo";
@@ -34,7 +34,7 @@ function Tasks() {
   return (
     <div className="max-w-6xl mx-auto text-white py-5 px-3">
       <Title title="All Tasks" />
-      <div className="mt-10 flex flex-row flex-wrap gap-3">
+      <div className="mt-10 flex flex-row items-start flex-wrap gap-3">
         {tasks &&
           tasks?.map((task, i) => (
             <Todo
