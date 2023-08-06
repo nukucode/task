@@ -21,10 +21,8 @@ export default function RootLayout({ children }) {
         {!user ? (
           <Login />
         ) : (
-          <div>
-            <div className="flex flex-row">
-              <div className="flex-1">{children}</div>
-            </div>
+          <div className="bg-[#17181f]">
+            <div>{children}</div>
             <Footer />
           </div>
         )}

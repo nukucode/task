@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 function Footer() {
   return (
-    <div className=" mx-auto flex items-center justify-center my-5">
+    <div className=" mx-auto flex items-center justify-center py-5">
       <h1>
         Developed By{" "}
         <Link
