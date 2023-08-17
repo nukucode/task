@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import {
-  BoltIcon,
   EllipsisHorizontalIcon,
   DocumentTextIcon,
   UserIcon,
@@ -10,7 +9,7 @@ import {
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Title({ title, leftIcon }) {
+export default function Title({ title }) {
   const [toggle, setToggle] = useState(false);
   const router = useRouter();
   return (
@@ -21,12 +20,7 @@ export default function Title({ title, leftIcon }) {
         }}
         className="flex items-center cursor-pointer"
       >
-        <BoltIcon
-          onClick={() => router.back()}
-          className="h-8 w-8 text-orange-400 cursor-pointer"
-        />
-
-        <h1 className="font-bold text-[25px] text-orange-200">{title}</h1>
+        <h1 className="font-bold text-[25px]">{title}</h1>
       </div>
       <div label="More" className="relative" onClick={() => setToggle(!toggle)}>
         <EllipsisHorizontalIcon className="icon text-gray-400" />
@@ -47,7 +41,7 @@ export default function Title({ title, leftIcon }) {
                 },
               },
             }}
-            className="absolute top-10 left-0 w-[150px] flex-col items-center bg-gray-700 rounded-md"
+            className="absolute top-10 right-0 w-[150px] flex-col items-center bg-indigo-400 rounded-md cursor-pointer"
           >
             <div
               onClick={() => router.push("/tasks")}
