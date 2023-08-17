@@ -2,6 +2,7 @@
 
 import { auth, provider } from "@/firebase/config";
 import { signInWithPopup } from "firebase/auth";
+import Image from "next/image";
 import React from "react";
 
 function Login() {
@@ -15,8 +16,15 @@ function Login() {
     window.location.href = "/";
   };
   return (
-    <div className="w-full h-screen flex items-center justify-center px-5">
-      <div className="flex flex-col items-center justify-center gap-5">
+    <div
+      className="w-full h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: "url(/texture.jpg)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="flex flex-col items-center justify-center gap-5 bg-[#0000003e] w-full h-full px-5">
         <h1 className="font-bold text-xl sm:text-5xl text-center sm:leading-[55px]">
           Track Your Tasks <br />
           <span className="text-gray-300">With Just One Tool</span>
@@ -39,3 +47,5 @@ function Login() {
 }
 
 export default Login;
+
+
