@@ -6,7 +6,7 @@ import { db } from "@/firebase/config";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
-function Tasks() {
+export default function Tasks() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(
@@ -52,4 +52,3 @@ function Tasks() {
   );
 }
 
-export default Tasks;

@@ -9,6 +9,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary: #0077ff;
+  --secondary: #00e7df;
+  --line-end: #009aff;
+  --text: #006cff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,13 +39,11 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-
 /* CUSTOM SCROLLBAR */
 
 body::-webkit-scrollbar {
   display: none;
 }
-
 
 .logo {
   font-family: "Pacifico";
@@ -66,14 +68,14 @@ body::-webkit-scrollbar {
   color: var(--color);
 }
 
-.addMoreIcon:hover{
+.addMoreIcon:hover {
   color: var(--color);
 }
 
-.subTaskCount{
+.subTaskCount {
   color: var(--color);
 }
 
-.menu-button{
-  @apply flex flex-row items-center gap-2 py-3 px-5 hover:bg-gray-500 
+.menu-button {
+  @apply flex flex-row items-center gap-2 py-3 px-5 hover:bg-indigo-500;
 }

@@ -84,7 +84,9 @@ export default function Task() {
               }}
               className="font-bold text-gray-200"
             >
-              <h1 className="">🙁 Sorry No Tasks</h1>
+              <h1 className="bg-gradient-to-r from-[--primary] to-[--secondary] bg-clip-text text-transparent text-[30px]">
+                Sorry No Tasks
+              </h1>
             </motion.div>
           )}
         </div>
