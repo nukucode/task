@@ -12,16 +12,23 @@ import { HashtagIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useDispatch } from "react-redux";
+import {
+  collectionToggle,
+  createCollectionToggle,
+} from "@/redux/feature/toggleSlice";
 
 function Header() {
   // Get route name
   const pathName = usePathname();
+  // useDispatch (UPDATE STATE)
+  const dispatch = useDispatch();
 
   return (
     <header className="bg-[#21212b] py-[10px] px-5 flex justify-between items-center shadow border-b-[1px] border-black">
       {/* left side */}
       <div className="flex items-center gap-8">
-        <button>
+        <button onClick={() => dispatch(collectionToggle())}>
           <Bars3Icon className="w-7 h-7" />
         </button>
         <Link href="/" className={`flex items-center gap-2 cursor-pointer`}>
@@ -60,18 +67,24 @@ function Header() {
 
       {/* right side */}
       <div className="flex items-center gap-4">
-        <div className="w-7 h-7 cursor-pointer rounded-lg bg-gradient-to-r from-[--primary] to-[--secondary] flex items-center justify-center">
+        <div
+          onClick={() => dispatch(createCollectionToggle(true))}
+          className="w-7 h-7 cursor-pointer rounded-lg bg-gradient-to-r from-[--primary] to-[--secondary] flex items-center justify-center"
+        >
           <PlusIcon className="w-5 h-5" />
         </div>
         <MagnifyingGlassIcon className="w-6 h-6 cursor-pointer" />
         <BellIcon className="h-6 w-6 cursor-pointer" />
-        <div className="w-10 h-10 rounded-full relative cursor-pointer">
+        <Link
+          href="/profile"
+          className="w-10 h-10 rounded-full relative cursor-pointer"
+        >
           <Image
             src="https://cdn4.iconfinder.com/data/icons/emoji-2-5/64/_lgbt_rainbow_emoji_face-1024.png"
             alt="profile-pic"
             fill
           />
-        </div>
+        </Link>
       </div>
     </header>
   );

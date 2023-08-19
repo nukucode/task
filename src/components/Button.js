@@ -1,10 +1,13 @@
-
-function Button() {
-//   const [active, setActive] = useState(true);
+function Button({
+  buttonOneTitle,
+  buttonTwoTitle,
+  buttonOneCallback,
+  buttonTwoCallback,
+}) {
   return (
     <div className="flex items-center gap-3">
-      <button className="button">Favorites</button>
-      <button className="button bg-[#414052]">All Collections</button>
+      <button className="button">{buttonOneTitle}</button>
+      <button className="button bg-[#414052]">{buttonTwoTitle}</button>
     </div>
   );
 }

@@ -20,7 +20,6 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { motion } from "framer-motion";
 
 function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   const [user, setUser] = useState(null);
@@ -144,24 +143,7 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
   };
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: {
-          scale: 0.8,
-          opacity: 0,
-        },
-        visible: {
-          scale: 1,
-          opacity: 1,
-          transition: {
-            delay: 0.3,
-          },
-        },
-      }}
-      className="bg-[#20212c] rounded-[15px] dura transition-all"
-    >
+    <div className="bg-[#20212c] rounded-[15px] dura transition-all">
       <div className="flex gap-3 p-2">
         <div>
           {!isCompleted ? (
@@ -299,7 +281,7 @@ function Todo({ title, colorCode, isCompleted, timestamp, id, isShowDate }) {
           )}
         </>
       )}
-    </motion.div>
+    </div>
   );
 }
 

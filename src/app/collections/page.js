@@ -1,4 +1,7 @@
+"use client";
+
 import Button from "@/components/Button";
+import CreateCollection from "@/components/CreateCollection";
 import Title from "@/components/Title";
 import {
   BookOpenIcon,
@@ -7,16 +10,27 @@ import {
   ShoppingCartIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { createCollectionToggle } from "@/redux/feature/toggleSlice";
 
 function Collections() {
+  const dispatch = useDispatch();
+  const value = useSelector(
+    (state) => state?.toggleSlice?.createCollectionToggleValue
+  );
   return (
     <div className="flex-1 max-w-3xl mx-auto">
       <Title title="Collections" />
-      <Button />
+      <Button buttonOneTitle="Favorites" buttonTwoTitle="All Collections" />
       {/* Collections */}
       <div className="pt-8 flex flex-wrap items-start gap-5 justify-start">
-        <div className="w-[190px] bg-[#21212b] rounded-2xl py-4 px-3 h-[160px] relative">
+        <Link
+          href="/collection/school"
+          className="w-[190px] bg-[#21212b] rounded-2xl py-4 px-3 h-[160px] relative"
+        >
           <div className="bg-pink-400 w-10 h-10 rounded-xl flex items-center justify-center">
             <BookOpenIcon className="h-6 w-6" />
           </div>
@@ -27,7 +41,7 @@ function Collections() {
               <div className="border-[3px] border-pink-400 w-5 h-5 rounded-full"></div>
             </div>
           </div>
-        </div>
+        </Link>
 
         <div className="w-[190px] bg-[#21212b] rounded-2xl py-4 px-3 h-[160px] relative">
           <div className="bg-indigo-400 w-10 h-10 rounded-xl flex items-center justify-center">
@@ -68,10 +82,14 @@ function Collections() {
           </div>
         </div>
 
-        <div className="w-[190px] border-2 border-[#21212b] rounded-2xl py-4 px-3 h-[100px] flex items-center justify-center cursor-pointer">
+        <div
+          onClick={() => dispatch(createCollectionToggle(true))}
+          className="w-[190px] border-2 border-[#21212b] rounded-2xl py-4 px-3 h-[100px] flex items-center justify-center cursor-pointer"
+        >
           <PlusIcon className="h-6 w-6 text-[#8f8f94] font-bold" />
         </div>
       </div>
+      {value && <CreateCollection />}
     </div>
   );
 }

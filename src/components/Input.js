@@ -6,7 +6,7 @@ import { db } from "@/firebase/config";
 import { collection, addDoc, serverTimestamp, doc } from "firebase/firestore";
 import { colors } from "@/utils/colors";
 
-function Input() {
+function Input({ colorCode, collectionName }) {
   const [user, setUser] = useState(null);
   const inputRef = useRef();
   const [input, setInput] = useState("");
@@ -45,8 +45,8 @@ function Input() {
         onSubmit={(e) => taskHandler(e)}
         className="flex items-center gap-3 border border-gray-700 px-3 py-3 rounded-2xl"
       >
-        <div className="bg-[#58D68D] rounded-lg w-6 h-6 flex items-center justify-center">
-          <PlusIcon className="h-5 text-black" />
+        <div className={`bg-[#58D68D] ${colorCode && `bg-${colorCode}`} rounded-lg w-6 h-6 flex items-center justify-center`}>
+          <PlusIcon className="h-5 text-black font-bold" />
         </div>
         <input
           ref={inputRef}

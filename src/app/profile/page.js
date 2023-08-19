@@ -17,7 +17,7 @@ function Profile() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto text-white py-5 px-3">
+    <div className="flex-1 max-w-3xl mx-auto text-white py-5 px-3">
       <Title title="Profile" />
       <div className="flex justify-center gap-5 items-center flex-col md:flex-row">
         <div className="w-[60px] h-[60px] rounded-full">

@@ -1,16 +1,19 @@
 "use client";
 
 import {
-  ArrowLeftOnRectangleIcon,
   BookOpenIcon,
   PaintBrushIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
+  // get state
+  const value = useSelector(
+    (state) => state?.toggleSlice?.collectionToggleValue);
+  console.log(value)
   return (
-    <div className="w-[220px] bg-[#21212b]">
+    <div className={`  w-[220px] bg-[#21212b] ${value ? "block" : "hidden"}`}>
       {/* label */}
       <h1 className="font-bold px-5 mt-5 mb-3 text-[#bcbcbf]">Collections</h1>
       <div className="flex items-center px-5 gap-2 hover:bg-[#272732] py-3 cursor-pointer">
@@ -18,7 +21,7 @@ function Sidebar() {
           <BookOpenIcon className="h-5 w-5" />
         </div>
         <h1 className="text-[16px]">School</h1>
-      </div>
+      </div> 
 
       <div className="flex items-center px-5 gap-2 hover:bg-[#272732] py-3 cursor-pointer">
         <div className="bg-indigo-400 w-8 h-8 rounded-xl flex items-center justify-center">

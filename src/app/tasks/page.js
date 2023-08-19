@@ -32,7 +32,7 @@ export default function Tasks() {
     []
   );
   return (
-    <div className="max-w-6xl mx-auto text-white py-5 px-3">
+    <div className="flex-1 max-w-6xl mx-auto text-white py-5 px-3">
       <Title title="All Tasks" />
       <div className="mt-10 flex flex-row items-start flex-wrap gap-3">
         {tasks &&

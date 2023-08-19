@@ -36,7 +36,7 @@ function Login() {
         <button
           type="submit"
           onClick={authHandler}
-          className="p-3 bg-orange-500 hover:bg-orange-400 transition-all duration-200 ease-in-out
+          className="p-3 bg-[#023150] hover:bg-[#023150e6] transition-all duration-200 ease-in-out
                text-white rounded-md shadow-md "
         >
           Sign Up With Google
