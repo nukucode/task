@@ -1,4 +1,5 @@
 "use client";
+import BottomTab from "@/components/BottomTab";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
 import Sidebar from "@/components/Sidebar";
@@ -9,6 +10,7 @@ import { Provider } from "react-redux";
 function Providers({ children }) {
   const [user, setUser] = useState(null);
   useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
+
   return (
     <>
       {!user ? (
@@ -16,10 +18,11 @@ function Providers({ children }) {
       ) : (
         <Provider store={store}>
           <Header />
-          <main className="flex h-screen overflow-hidden bg-[#181820]">
+          <main className="flex bg-[#181820] scrollbar-hide">
             <Sidebar />
             {children}
           </main>
+          <BottomTab />
         </Provider>
       )}
     </>

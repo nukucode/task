@@ -4,7 +4,6 @@ import React from "react";
 import {
   Bars3Icon,
   BellIcon,
-  FolderIcon,
   MagnifyingGlassIcon,
   NewspaperIcon,
 } from "@heroicons/react/24/outline";
@@ -17,15 +16,17 @@ import {
   collectionToggle,
   createCollectionToggle,
 } from "@/redux/feature/toggleSlice";
+import { useRouter } from "next/navigation";
 
 function Header() {
   // Get route name
   const pathName = usePathname();
   // useDispatch (UPDATE STATE)
   const dispatch = useDispatch();
+  const router = useRouter();
 
   return (
-    <header className="bg-[#21212b] py-[10px] px-5 flex justify-between items-center shadow border-b-[1px] border-black">
+    <header className="bg-[#21212b] py-[10px] px-5 justify-between items-center shadow border-b-[1px] border-black hidden sm:flex">
       {/* left side */}
       <div className="flex items-center gap-8">
         <button onClick={() => dispatch(collectionToggle())}>
@@ -66,9 +67,11 @@ function Header() {
       </div>
 
       {/* right side */}
-      <div className="flex items-center gap-4">
+      <div className=" flex items-center gap-4  ">
         <div
-          onClick={() => dispatch(createCollectionToggle(true))}
+          onClick={() => {
+            router.push("/collections"), dispatch(createCollectionToggle(true));
+          }}
           className="w-7 h-7 cursor-pointer rounded-lg bg-gradient-to-r from-[--primary] to-[--secondary] flex items-center justify-center"
         >
           <PlusIcon className="w-5 h-5" />
@@ -83,6 +86,8 @@ function Header() {
             src="https://cdn4.iconfinder.com/data/icons/emoji-2-5/64/_lgbt_rainbow_emoji_face-1024.png"
             alt="profile-pic"
             fill
+            className="rounded-full"
+            style={{ objectFit: "cover" }}
           />
         </Link>
       </div>

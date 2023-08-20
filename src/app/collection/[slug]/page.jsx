@@ -10,8 +10,8 @@ function page() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const pathName = usePathname();
   return (
-    <div className="flex-1 max-w-3xl mx-auto">
-      <Title title="School" isNavigateButton={true} />
+    <div className="flex-1 max-w-3xl mx-auto px-5">
+      <Title title="School" isShow={true} isNavigateButton={true} />
       <Input colorCode="indigo-400" />
       <Tasks />
     </div>
