@@ -1,31 +1,55 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { db } from "@/firebase/config";
-import { collection, addDoc, serverTimestamp, doc } from "firebase/firestore";
-import { colors } from "@/utils/colors";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 
-function Input({ colorCode, collectionName }) {
-  const [user, setUser] = useState(null);
+function Input({ collectionName, user }) {
   const inputRef = useRef();
+  const [Collection, setCollection] = useState();
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  /* Get User From LocalStorage */
-  useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
+  // -> get the collection by CollectionName
+  const getCollection = async () => {
+    const docRef = doc(
+      db,
+      "users",
+      JSON.parse(localStorage.getItem("user")).uid,
+      "collections",
+      collectionName
+    );
+    try {
+      const docSnap = await getDoc(docRef);
+      // console.log(docSnap.data());
+      setCollection(docSnap.data());
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCollection();
+  }, [collectionName]);
 
   /* Add Task In Firebase */
   const taskHandler = (e) => {
     setIsLoading(true);
     e.preventDefault();
     if (input != "" && input.length >= 5) {
-      const docRef = doc(db, "tasks", user.uid);
+      const docRef = doc(db, "users", user.uid, "collections", collectionName);
       const colRef = collection(docRef, "tasks");
       addDoc(colRef, {
         task: input,
         timestamp: serverTimestamp(),
-        colorCode: colors[Math.floor(Math.random() * colors.length)],
+        colorCode: Collection?.colorCode,
         isCompleted: false,
       });
       setInput("");
@@ -35,17 +59,17 @@ function Input({ colorCode, collectionName }) {
     setIsLoading(false);
   };
 
-  /* Input Default Focus */
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
   return (
     <>
       <form
         onSubmit={(e) => taskHandler(e)}
         className="flex items-center gap-3 border border-gray-700 px-3 py-3 rounded-2xl"
       >
-        <div className={`bg-[#58D68D] ${colorCode && `bg-${colorCode}`} rounded-lg w-6 h-6 flex items-center justify-center`}>
+        <div
+          className={`bg-[#58D68D]
+          } rounded-lg w-6 h-6 flex items-center justify-center`}
+          style={{ background: Collection?.colorCode }}
+        >
           <PlusIcon className="h-5 text-black font-bold" />
         </div>
         <input

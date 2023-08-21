@@ -1,8 +1,8 @@
 "use client";
 
 import { auth, provider } from "@/firebase/config";
+import { addUser } from "@/redux/feature/slices";
 import { signInWithPopup } from "firebase/auth";
-import Image from "next/image";
 import React from "react";
 
 function Login() {
@@ -11,7 +11,6 @@ function Login() {
     const user = await signInWithPopup(auth, provider);
     if (user) {
       localStorage.setItem("user", JSON.stringify(user.user));
-      console.log(user);
     }
     window.location.href = "/";
   };
@@ -47,5 +46,3 @@ function Login() {
 }
 
 export default Login;
-
-

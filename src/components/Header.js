@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Bars3Icon,
   BellIcon,
@@ -11,20 +11,24 @@ import { HashtagIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
+  addUser,
   collectionToggle,
   createCollectionToggle,
-} from "@/redux/feature/toggleSlice";
+} from "@/redux/feature/slices";
 import { useRouter } from "next/navigation";
 
-function Header() {
+function Header({ user }) {
   // Get route name
   const pathName = usePathname();
   // useDispatch (UPDATE STATE)
   const dispatch = useDispatch();
   const router = useRouter();
-
+  const data = useSelector((state) => state?.slices?.userData);
+  useEffect(() => {
+    dispatch(addUser(user));
+  }, [user]);
   return (
     <header className="bg-[#21212b] py-[10px] px-5 justify-between items-center shadow border-b-[1px] border-black hidden sm:flex">
       {/* left side */}
@@ -83,7 +87,7 @@ function Header() {
           className="w-10 h-10 rounded-full relative cursor-pointer"
         >
           <Image
-            src="https://cdn4.iconfinder.com/data/icons/emoji-2-5/64/_lgbt_rainbow_emoji_face-1024.png"
+            src={data?.photoURL}
             alt="profile-pic"
             fill
             className="rounded-full"

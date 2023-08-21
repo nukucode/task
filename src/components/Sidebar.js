@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 function Sidebar() {
   // get state
   const value = useSelector(
-    (state) => state?.toggleSlice?.collectionToggleValue
+    (state) => state?.slices?.collectionToggleValue
   );
   return (
     <div className={`w-[220px]  bg-[#21212b] ${value ? "block" : "hidden"}`}>

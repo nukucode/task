@@ -19,7 +19,7 @@ export default function Tasks() {
             JSON.parse(localStorage.getItem("user")).uid,
             "tasks"
           ),
-          orderBy("timestamp", "desc")
+          orderBy("timestamp", "desc"),
         ),
         (snapshot) => {
           setTasks(
@@ -51,4 +51,3 @@ export default function Tasks() {
     </div>
   );
 }
-

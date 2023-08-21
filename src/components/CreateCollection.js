@@ -1,6 +1,6 @@
 "use client";
 import { db } from "@/firebase/config";
-import { createCollectionToggle } from "@/redux/feature/toggleSlice";
+import { createCollectionToggle } from "@/redux/feature/slices";
 import { colors } from "@/utils/colors";
 import { icons } from "@/utils/icons";
 import {
@@ -13,7 +13,7 @@ import {
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function CreateCollection() {
+function CreateCollection({ state }) {
   const dispatch = useDispatch();
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   const [colorCode, setColorCode] = useState(randomColor);
@@ -23,7 +23,7 @@ function CreateCollection() {
   const collectionHandler = (e) => {
     e.preventDefault();
     if (Collection != "" && Collection.length >= 5) {
-      const docRef = doc(db, "users", "uid");
+      const docRef = doc(db, "users", state.uid);
       const colRef = collection(docRef, "collections");
       const docRef2 = doc(colRef, Collection);
       setDoc(docRef2, {

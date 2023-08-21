@@ -16,7 +16,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { createCollectionToggle } from "@/redux/feature/toggleSlice";
+import { createCollectionToggle } from "@/redux/feature/slices";
 
 function BottomTab() {
   const pathName = usePathname();

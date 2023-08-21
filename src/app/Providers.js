@@ -12,20 +12,20 @@ function Providers({ children }) {
   useEffect(() => setUser(JSON.parse(localStorage.getItem("user"))), []);
 
   return (
-    <>
+    <Provider store={store}>
       {!user ? (
         <Login />
       ) : (
-        <Provider store={store}>
-          <Header />
+        <>
+          <Header user={user} />
           <main className="flex bg-[#181820] scrollbar-hide">
             <Sidebar />
             {children}
           </main>
           <BottomTab />
-        </Provider>
+        </>
       )}
-    </>
+    </Provider>
   );
 }
 
