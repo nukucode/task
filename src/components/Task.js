@@ -6,7 +6,7 @@ import {
   ArrowUturnDownIcon,
 } from "@heroicons/react/24/solid";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 

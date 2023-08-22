@@ -2,16 +2,16 @@
 
 import React, { useEffect } from "react";
 import {
-  Bars3Icon,
   BellIcon,
   MagnifyingGlassIcon,
-  NewspaperIcon,
 } from "@heroicons/react/24/outline";
 import { HashtagIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import { BsGrid1X2Fill , BsFolder2Open} from "react-icons/bs";
+
 import {
   addUser,
   collectionToggle,
@@ -33,12 +33,9 @@ function Header({ user }) {
     <header className="bg-[#21212b] py-[10px] px-5 justify-between items-center shadow border-b-[1px] border-black hidden sm:flex">
       {/* left side */}
       <div className="flex items-center gap-8">
-        <button onClick={() => dispatch(collectionToggle())}>
-          <Bars3Icon className="w-7 h-7" />
-        </button>
         <Link href="/" className={`flex items-center gap-2 cursor-pointer`}>
-          <HashtagIcon
-            className={`w-7 h-7 text-[#828287] ${
+          <BsGrid1X2Fill
+            className={`w-5 h-5 text-[#828287] ${
               pathName === "/" && "text-white"
             }`}
           />
@@ -55,8 +52,8 @@ function Header({ user }) {
           href="/collections"
           className="flex items-center gap-2 cursor-pointer"
         >
-          <NewspaperIcon
-            className={`w-7 h-7 text-[#828287] ${
+          <BsFolder2Open
+            className={`w-6 h-6 text-[#828287] ${
               pathName === "/collections" && "text-white"
             }`}
           />
