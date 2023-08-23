@@ -3,12 +3,10 @@ import React from "react";
 import {
   BellIcon,
   FolderIcon,
-  HomeIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import {
-  HomeIcon as HomeSolid,
   FolderIcon as FolderSolid,
   MagnifyingGlassIcon as SearchSolid,
   PlusIcon,
@@ -17,24 +15,25 @@ import {
 import { usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { createCollectionToggle } from "@/redux/feature/slices";
+import { BsGrid1X2, BsGrid1X2Fill,  } from "react-icons/bs";
 
 function BottomTab() {
   const pathName = usePathname();
   const dispatch = useDispatch();
   return (
-    <div className=" z-[1100] fixed bottom-0 left-0 right-0 flex items-center justify-around sm:hidden px-5 bg-[#181820]/50 py-4 backdrop-blur-xl drop-shadow-lg">
+    <div className=" z-[1100] fixed bottom-5 left-5 right-5 flex items-center justify-around sm:hidden px-5 bg-[#181820]/50 py-4 backdrop-blur-xl drop-shadow-lg rounded-full">
       <Link href="/">
         {pathName === "/" ? (
-          <HomeSolid className="w-6 h-6" />
+          <BsGrid1X2Fill className="w-5 h-5" />
         ) : (
-          <HomeIcon className="w-6 h-6" />
+          <BsGrid1X2 className="w-5 h-5 text-gray-400" />
         )}
       </Link>
       <Link href="/collections">
         {pathName === "/collections" ? (
           <FolderSolid className="w-6 h-6" />
         ) : (
-          <FolderIcon className="w-6 h-6" />
+          <FolderIcon className="w-6 h-6 text-gray-400" />
         )}
       </Link>
 
@@ -49,15 +48,15 @@ function BottomTab() {
         {pathName === "/search" ? (
           <SearchSolid className="w-6 h-6" />
         ) : (
-          <MagnifyingGlassIcon className="w-6 h-6" />
+          <MagnifyingGlassIcon className="w-6 h-6 text-gray-400" />
         )}
       </Link>
 
       <Link href="/notification">
         {pathName === "/notification" ? (
-          <BellSolid className="w-6 h-6" />
+          <BellSolid className="w-6 h-6 " />
         ) : (
-          <BellIcon className="w-6 h-6" />
+          <BellIcon className="w-6 h-6 text-gray-400" />
         )}
       </Link>
     </div>
