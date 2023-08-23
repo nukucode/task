@@ -113,6 +113,21 @@ function OverviewTile({ colorCode, title, icon }) {
       .match(/.{2}/g)
       .map((x) => parseInt(x, 16));
 
+  
+
+  // => Convert Timestamp to Date
+  function formatDate(date) {
+    const formatDate = new Date(
+      date?.seconds * 1000 + date?.nanoseconds / 1000000
+    );
+    return formatDate.toLocaleDateString("en-in", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  }
+
+
   return (
     <div
       className={`bg-[#21212b] rounded-2xl mt-5 ${
@@ -161,7 +176,7 @@ function OverviewTile({ colorCode, title, icon }) {
                       {task.data.task}
                     </p>
                     <span className="text-[13px] text-[#c85656]">
-                      Today 12:00
+                     {formatDate(task.data.timestamp)}
                     </span>
                   </div>
                 </div>

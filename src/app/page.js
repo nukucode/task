@@ -5,6 +5,7 @@ import DashboardHeader from "@/components/DashboardHeader";
 import OverviewTile from "@/components/OverviewTile";
 import Title from "@/components/Title";
 import { db } from "@/firebase/config";
+import { greet } from "@/utils/greetingMessage";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -43,7 +44,8 @@ function Dashboard() {
       <DashboardHeader />
       <div className="pb-5">
         <h1 className="font-bold text-[30px]">
-          Good morning, <br /> {state?.userData?.displayName}{" "}
+          {greet[parseInt((new Date().getHours() / 24) * 4)]}, <br />{" "}
+          {state?.userData?.displayName}{" "}
         </h1>
       </div>
       <Button buttonOneTitle="Daily Overview" buttonTwoTitle="Statistics" />

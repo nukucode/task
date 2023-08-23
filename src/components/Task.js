@@ -10,6 +10,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
+import { weekColors } from "@/utils/colors";
 
 function Todo({
   title,
@@ -125,7 +126,10 @@ function Todo({
                   />
                   <span
                     style={{
-                      color: "#828287",
+                      color:
+                        weekColors[
+                          Math.floor(Math.random() * weekColors.length)
+                        ],
                     }}
                     className="text-[15px] font-[600]"
                   >

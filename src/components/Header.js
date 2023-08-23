@@ -30,7 +30,7 @@ function Header({ user }) {
   }, [user]);
 
   return (
-    <header className="bg-[#21212b] py-[10px] px-5 justify-between items-center shadow border-b-[1px] border-black hidden sm:flex">
+    <header className=" bg-[#21212b] py-[10px] px-5 justify-between items-center shadow border-b-[1px] border-black hidden sm:flex">
       <div className="flex items-center gap-8">
         <Link href="/" className={`flex items-center gap-2 cursor-pointer`}>
           <BsGrid1X2Fill

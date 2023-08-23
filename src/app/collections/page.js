@@ -42,7 +42,7 @@ function Collections() {
 
   return (
     <div className="flex-1 max-w-3xl mx-auto px-5">
-      <Title title="Collections" isShow={true} isButtonList />
+      <Title title="Collections" isShow={true} />
       <Button buttonOneTitle="Favorites" buttonTwoTitle="All Collections" />
       {/* Collections */}
       <div className="pt-8 grid grid-cols-1 am:grid-cols-2 sm:flex flex-wrap items-start gap-5 justify-start">

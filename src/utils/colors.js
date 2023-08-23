@@ -22,3 +22,13 @@ export const colors = [
   "#1E2761",
   "#B22222",
 ];
+
+export const weekColors = [
+  "#138D75",
+  "#E74C3C",
+  "#DC7633",
+  "#F0F3F4",
+  "#F39C12",
+  "#AED6F1",
+  "#00539C",
+];
