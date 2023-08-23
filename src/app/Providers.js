@@ -2,7 +2,6 @@
 import BottomTab from "@/components/BottomTab";
 import Header from "@/components/Header";
 import Login from "@/components/Login";
-import Sidebar from "@/components/Sidebar";
 import { store } from "@/redux/store";
 import React, { useEffect, useState } from "react";
 import { Provider } from "react-redux";
@@ -18,8 +17,7 @@ function Providers({ children }) {
       ) : (
         <>
           <Header user={user} />
-          <main className="flex bg-[#181820] scrollbar-hide">
-            <Sidebar />
+          <main className="flex bg-[#181820] scrollbar-hide pb-[100px]">
             {children}
           </main>
           <BottomTab />
