@@ -1,7 +1,10 @@
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { ChevronUpIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
+import {
+  ChevronUpIcon,
+  ChevronDownIcon,
+  CheckIcon,
+} from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
-import { returnIcons } from "@/utils/icons";
 import {
   collection,
   doc,
@@ -14,7 +17,6 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import Link from "next/link";
-import { CheckIcon } from "@heroicons/react/24/solid";
 
 function OverviewTile({ colorCode, title, icon }) {
   const [isExpend, setIsExpend] = useState(true);
@@ -101,12 +103,20 @@ function OverviewTile({ colorCode, title, icon }) {
     []
   );
 
-
+  const hexToRgb = (hex) =>
+    hex
+      .replace(
+        /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+        (m, r, g, b) => "#" + r + r + g + g + b + b
+      )
+      .substring(1)
+      .match(/.{2}/g)
+      .map((x) => parseInt(x, 16));
 
   return (
     <div
       className={`bg-[#21212b] rounded-2xl mt-5 ${
-        comTasks.length || (notComTasks.length <= 0 && "hidden")
+        comTasks?.length || (notComTasks?.length <= 0 && "hidden")
       }`}
     >
       {/* Tile Header */}
@@ -114,12 +124,14 @@ function OverviewTile({ colorCode, title, icon }) {
         <div className="flex items-center gap-2">
           <div
             className={`
-            } w-8 h-8 rounded-xl flex items-center justify-center`}
-            style={{ background: colorCode }}
+            } py-[6px] px-[10px] rounded-xl flex items-center justify-center  `}
+            style={{
+              background: `rgba(${hexToRgb(colorCode)}, .1)`,
+              color: colorCode,
+            }}
           >
-            {returnIcons(icon)}
+            <h1 className="text-[16px] font-bold">{title}</h1>
           </div>
-          <h1 className="text-[16px]">{title}</h1>
         </div>
         <button
           className="cursor-pointer"
@@ -136,7 +148,7 @@ function OverviewTile({ colorCode, title, icon }) {
       {/* Tile Mid */}
       {isExpend && (
         <div className="px-3 flex flex-col py-5 gap-4">
-          {notComTasks.length > 0
+          {notComTasks?.length > 0
             ? notComTasks?.map((task, i) => (
                 <div key={i} className="flex gap-3">
                   <div
@@ -164,7 +176,7 @@ function OverviewTile({ colorCode, title, icon }) {
                       background: task.data.colorCode,
                     }}
                   >
-                    <CheckIcon className="h-5 w-5 font-bold " />
+                    <CheckIcon className="h-5 w-5 font-bold text-black " />
                   </div>
                   <div className="flex flex-col -gap-1">
                     <p
@@ -188,7 +200,7 @@ function OverviewTile({ colorCode, title, icon }) {
         className="flex items-center justify-center gap-2 border-t-[0.50px] border-[#8c8c91] py-4 cursor-pointer"
       >
         <span>Go to Collection</span>
-        <ArrowRightIcon className="h-6 w-6 text-[#8c8c91]" />
+        <ArrowRightIcon className="h-6 w-6 text-[#8c8c91] animate-pulse" />
       </Link>
     </div>
   );

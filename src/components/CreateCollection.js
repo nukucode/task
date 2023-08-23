@@ -2,14 +2,7 @@
 import { db } from "@/firebase/config";
 import { createCollectionToggle } from "@/redux/feature/slices";
 import { colors } from "@/utils/colors";
-import { icons } from "@/utils/icons";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
+import { collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -18,11 +11,10 @@ function CreateCollection({ state }) {
   const randomColor = colors[Math.floor(Math.random() * colors.length)];
   const [colorCode, setColorCode] = useState(randomColor);
   const [Collection, setCollection] = useState();
-  const [Icon, setIcon] = useState();
 
   const collectionHandler = (e) => {
     e.preventDefault();
-    if (Collection != "" && Collection.length >= 5) {
+    if (Collection != "" && Collection.length >= 3) {
       const docRef = doc(db, "users", state.uid);
       const colRef = collection(docRef, "collections");
       const docRef2 = doc(colRef, Collection);
@@ -30,7 +22,6 @@ function CreateCollection({ state }) {
         collection: Collection,
         timestamp: serverTimestamp(),
         colorCode: colorCode,
-        icon: Icon?.render?.name,
       });
       setCollection("");
       dispatch(createCollectionToggle(false));
@@ -46,7 +37,7 @@ function CreateCollection({ state }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className=" w-full max-w-[650px] min-h-[350px] bg-gray-800/70 rounded-lg py-5 mx-3 "
+        className=" w-full max-w-[650px] min-h-[250px] bg-gray-800/70 rounded-lg py-5 mx-3 "
       >
         <div className="border-b pb-3 pl-5">
           <span className="font-bold ">Create Collection</span>
@@ -58,9 +49,8 @@ function CreateCollection({ state }) {
           <div
             className={`w-8 h-8 rounded-lg flex items-center justify-center`}
             style={{ background: colorCode }}
-          >
-            {Icon && <Icon className="w-5 h-5" />}
-          </div>
+          />
+
           <input
             type="text"
             id="createCollection"
@@ -79,17 +69,6 @@ function CreateCollection({ state }) {
               style={{ background: color }}
             />
           ))}
-        </div>
-
-        <div className="flex items-center justify-start flex-wrap gap-4 px-3 mt-5">
-          {icons &&
-            icons?.map((Icon, index) => (
-              <Icon
-                onClick={() => setIcon(Icon)}
-                key={index}
-                className={`w-6 h-6 rounded-lg cursor-pointer hover:border-2 hover:border-blue-500`}
-              />
-            ))}
         </div>
       </div>
     </div>

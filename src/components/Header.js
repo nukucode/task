@@ -10,11 +10,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { BsGrid1X2Fill , BsFolder2Open} from "react-icons/bs";
+import {BsGrid1X2Fill, BsFolder2Open} from 'react-icons/bs'
 
 import {
   addUser,
-  collectionToggle,
   createCollectionToggle,
 } from "@/redux/feature/slices";
 import { useRouter } from "next/navigation";
@@ -29,13 +28,13 @@ function Header({ user }) {
   useEffect(() => {
     dispatch(addUser(user));
   }, [user]);
+
   return (
     <header className="bg-[#21212b] py-[10px] px-5 justify-between items-center shadow border-b-[1px] border-black hidden sm:flex">
-      {/* left side */}
       <div className="flex items-center gap-8">
         <Link href="/" className={`flex items-center gap-2 cursor-pointer`}>
           <BsGrid1X2Fill
-            className={`w-5 h-5 text-[#828287] ${
+            className={`w-5 h-5 -mt-1 text-[#828287] ${
               pathName === "/" && "text-white"
             }`}
           />
@@ -53,7 +52,7 @@ function Header({ user }) {
           className="flex items-center gap-2 cursor-pointer"
         >
           <BsFolder2Open
-            className={`w-6 h-6 text-[#828287] ${
+            className={`w-6 h-6 -mt-1 text-[#828287] ${
               pathName === "/collections" && "text-white"
             }`}
           />

@@ -7,19 +7,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { createCollectionToggle } from "@/redux/feature/slices";
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { PlusIcon } from "@heroicons/react/20/solid";
-import CollectionTile from "@/components/CollectionTile";
-
+import { PlusIcon } from "@heroicons/react/24/solid";
+import CollectionTile from "@/components/Collection";
 
 function Collections() {
-  const [collections, setCollections] = useState(null);
+  const [cols, setCols] = useState(null);
   const dispatch = useDispatch();
   const state = useSelector((state) => state?.slices);
 
@@ -36,7 +30,7 @@ function Collections() {
           orderBy("timestamp", "desc")
         ),
         (snapshot) => {
-          setCollections(
+          setCols(
             snapshot.docs.map((doc) => {
               return { id: doc.id, data: doc.data() };
             })
@@ -46,17 +40,16 @@ function Collections() {
     []
   );
 
-  
-
   return (
     <div className="flex-1 max-w-3xl mx-auto px-5">
-      <Title title="Collections" isShow={true} />
+      <Title title="Collections" isShow={true} isButtonList />
       <Button buttonOneTitle="Favorites" buttonTwoTitle="All Collections" />
       {/* Collections */}
       <div className="pt-8 grid grid-cols-1 am:grid-cols-2 sm:flex flex-wrap items-start gap-5 justify-start">
-        {collections &&
-          collections.map((collection, i) => (
+        {cols &&
+          cols?.map((collection, i) => (
             <CollectionTile
+              index={i}
               key={i}
               id={collection.id}
               collectionName={collection.data.collection}

@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { db } from "@/firebase/config";
 
-function Tasks({ collectionName }) {
+function Tasks({ collectionName, editTask }) {
   const [notCompletedTasks, setNotCompletedTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
 
@@ -83,6 +83,7 @@ function Tasks({ collectionName }) {
               id={task.id}
               collectionName={collectionName}
               isCompleted={task.data.isCompleted}
+              editTask={editTask}
             />
           ))}
       </div>
@@ -100,6 +101,7 @@ function Tasks({ collectionName }) {
               id={task.id}
               collectionName={collectionName}
               isCompleted={task.data.isCompleted}
+              editTask={editTask}
             />
           ))}
       </div>

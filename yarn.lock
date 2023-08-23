@@ -460,7 +460,7 @@
     protobufjs "^7.0.0"
     yargs "^17.7.2"
 
-"@heroicons/react@^2.0.17":
+"@heroicons/react@2.0.17":
   version "2.0.17"
   resolved "https://registry.npmjs.org/@heroicons/react/-/react-2.0.17.tgz"
   integrity sha512-90GMZktkA53YbNzHp6asVEDevUQCMtxWH+2UK2S8OpnLEu7qckTJPhNxNQG52xIR1WFTwFqtH6bt7a60ZNcLLA==

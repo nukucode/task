@@ -14,7 +14,6 @@ function Dashboard() {
   const [collections, setCollections] = useState([]);
   // -> Get State
   const state = useSelector((state) => state?.slices);
-  console.log(state);
   useEffect(
     () =>
       onSnapshot(

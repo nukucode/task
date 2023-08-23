@@ -1,4 +1,3 @@
-import { WalletIcon } from "@heroicons/react/20/solid";
 import {
   ArchiveBoxIcon,
   BookOpenIcon,
@@ -21,9 +20,9 @@ import {
   ShoppingCartIcon,
   UserIcon,
   UsersIcon,
-} from "@heroicons/react/20/solid";
+  WalletIcon,
+} from "@heroicons/react/24/outline";
 
-import * as Icons from "@heroicons/react/24/solid";
 
 export const icons = [
   BookOpenIcon,
@@ -50,7 +49,4 @@ export const icons = [
   BuildingOfficeIcon,
 ];
 
-export const returnIcons = (name) => {
-  const Icon = Icons[name];
-  return <Icon className="w-6 h-6" />;
-};
+

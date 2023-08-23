@@ -4,10 +4,11 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
   ArrowUturnDownIcon,
+  CheckIcon,
 } from "@heroicons/react/24/solid";
-import { CheckIcon } from "@heroicons/react/20/solid";
+import { TrashIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 
 function Todo({
@@ -18,6 +19,7 @@ function Todo({
   timestamp,
   collectionName,
   id,
+  editTask,
 }) {
   const [isExpend, setIsExpend] = useState(true);
   // => Convert Timestamp to Weekday
@@ -53,6 +55,24 @@ function Todo({
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  // delete tasks
+
+  const deleteTask = () => {
+    const docRef = doc(
+      db,
+      "users",
+      JSON.parse(localStorage.getItem("user")).uid,
+      "collections",
+      collectionName,
+      "tasks",
+      id
+    );
+
+    deleteDoc(docRef)
+      .then(() => console.log("Task deleted successfully"))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -128,6 +148,11 @@ function Todo({
                 />
               )}
             </button>
+            {editTask && (
+              <button onClick={deleteTask}>
+                <TrashIcon className="w-6 h-6 text-gray-300" />
+              </button>
+            )}
           </div>
         </div>
       </div>

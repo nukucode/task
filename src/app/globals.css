@@ -88,3 +88,7 @@ body::-webkit-scrollbar {
 .button{
 @apply border border-[#414052] py-[6px] px-3 rounded-2xl text-[13px]
 }
+
+.button-tile{
+  @apply flex w-full items-center gap-2 py-[8px] px-3 hover:bg-[#4d4c5e]
+}
