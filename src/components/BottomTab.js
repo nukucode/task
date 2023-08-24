@@ -21,7 +21,7 @@ function BottomTab() {
   const pathName = usePathname();
   const dispatch = useDispatch();
   return (
-    <div className=" z-[1100] fixed bottom-5 left-5 right-5 flex items-center justify-around sm:hidden px-5 bg-[#181820]/50 py-4 backdrop-blur-xl drop-shadow-lg rounded-full">
+    <div className=" z-[1100] shadow fixed bottom-5 left-5 right-5 flex items-center justify-around sm:hidden px-5 bg-[#181820]/50 py-4 backdrop-blur-xl drop-shadow-lg rounded-full">
       <Link href="/">
         {pathName === "/" ? (
           <BsGrid1X2Fill className="w-5 h-5" />
