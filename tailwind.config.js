@@ -12,7 +12,7 @@ module.exports = {
       whiteSmoke: "#F9F9F9",
       charcoal: "#2F2B43",
       white: "#FFFFFF",
-      active: "#dedede",
+      active: "#f9f9f9",
       icon: "#d3d2d7",
       grayText: "#a4a4a4",
     },
