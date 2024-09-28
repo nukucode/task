@@ -7,7 +7,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 function TaskContainer({ title, taskCount, icon, tasks }) {
   const [expend, setExpend] = useState(false);
   return (
-    <div className=" flex my-6 lg:pl-[2rem]">
+    <div className="border-[#a4e229] border flex my-6 lg:pl-[2rem]">
       <div className="hidden lg:flex">
         <AddIcon className="text-icon" />
         <DragIndicatorIcon className="text-icon" />
@@ -34,16 +34,20 @@ function TaskContainer({ title, taskCount, icon, tasks }) {
             <span>{icon}</span>
             <h3 className="font-plusSans">{title}</h3>
             <div className="bg-active w-[20px] h-[20px] flex items-center justify-center rounded-md drop-shadow-sm">
-              <p className="font-plusSans text-[12px] font-bold">
-                {taskCount}
-              </p>
+              <p className="font-plusSans text-[12px] font-bold">{taskCount}</p>
             </div>
           </div>
         </div>
 
         <div className={`py-3 pl-5 ${expend && "hidden"}`}>
           {React.Children.toArray(
-            tasks.map((task, i) => <Task task={task.title} isCompleted={task.isCompleted} />)
+            tasks.map((task, i) => (
+              <Task
+                task={task.title}
+                isCompleted={task.isCompleted}
+                assign={task.assign}
+              />
+            ))
           )}
         </div>
       </div>

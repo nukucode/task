@@ -5,8 +5,33 @@ import { InputContainer } from "./InputContainer";
 import { TipContainer } from "./TipContainer";
 import { TaskContainer } from "./TaskContainer";
 import { data } from "../../data/data";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { useState } from "react";
 
 function Home() {
+  const [containers, setContainers] = useState(data);
+
+  // a little function to help with us with reordering the results
+  const reorder = (list, startIndex, endIndex) => {
+    const results = Array.from(list);
+    const [removed] = results.splice(startIndex, 1);
+    results.splice(endIndex, 0, removed);
+
+    return results;
+  };
+
+  const onDragEnd = (result) => {
+    if (!result.destination) {
+      return;
+    }
+    const items = reorder(
+      containers,
+      result.source.index,
+      result.destination.index
+    );
+    setContainers(items);
+  };
+
   return (
     <main className=" relative overflow-auto z-[1] lg:ml-[300px] w-full py-5 px-5 lg:pr-[5rem]">
       <Header />
@@ -25,15 +50,31 @@ function Home() {
       </div>
       <TipContainer />
       <InputContainer />
-      {data.map((item, i) => (
-        <TaskContainer
-          key={i}
-          title={item.title}
-          taskCount={item.taskCount}
-          icon={item.icon}
-          tasks={item.tasks}
-        />
-      ))}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="droppable">
+          {(provided) => (
+            <div ref={provided.innerRef} {...provided.droppableProps}>
+              {containers.map((item, i) => (
+                <Draggable key={item.id} draggableId={item.id} index={i}>
+                  {(provided) => (
+                    <TaskContainer
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      title={item.title}
+                      taskCount={item.taskCount}
+                      icon={item.icon}
+                      tasks={item.tasks}
+                      key={item.id}
+                      index={i}
+                    />
+                  )}
+                </Draggable>
+              ))}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
     </main>
   );
 }
