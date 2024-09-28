@@ -4,10 +4,9 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: [
-      
-    ],
+    domains: [],
   },
+  reactStrictMode: false,
 };
 
 module.exports = nextConfig;

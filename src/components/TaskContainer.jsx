@@ -7,7 +7,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 function TaskContainer({ title, taskCount, icon, tasks }) {
   const [expend, setExpend] = useState(false);
   return (
-    <div className="border-[#a4e229] border flex my-6 lg:pl-[2rem]">
+    <div className="flex my-6 lg:pl-[2rem]">
       <div className="hidden lg:flex">
         <AddIcon className="text-icon" />
         <DragIndicatorIcon className="text-icon" />

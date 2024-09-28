@@ -1,4 +1,5 @@
 "use client";
+
 import { Squares2X2Icon } from "@heroicons/react/24/outline";
 import { Header } from "./Header";
 import { InputContainer } from "./InputContainer";
@@ -11,7 +12,6 @@ import { useState } from "react";
 function Home() {
   const [containers, setContainers] = useState(data);
 
-  // a little function to help with us with reordering the results
   const reorder = (list, startIndex, endIndex) => {
     const results = Array.from(list);
     const [removed] = results.splice(startIndex, 1);
@@ -61,12 +61,12 @@ function Home() {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      key={item.id}
+                      index={i}
                       title={item.title}
                       taskCount={item.taskCount}
                       icon={item.icon}
                       tasks={item.tasks}
-                      key={item.id}
-                      index={i}
                     />
                   )}
                 </Draggable>
