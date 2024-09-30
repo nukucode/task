@@ -18,7 +18,7 @@ function SidebarItem({
     <>
       {!add ? (
         <div
-          className={`flex items-center justify-between hover:bg-active transition-all duration-150 ease-in-out cursor-pointer w-full p-2 rounded ${
+          className={`flex items-center justify-between mt-[2px] hover:bg-active transition-all duration-150 ease-in-out cursor-pointer w-full p-2 rounded ${
             active && "bg-active"
           }`}
         >
@@ -44,7 +44,13 @@ function SidebarItem({
                 !active ? "bg-active" : "bg-white"
               } w-[20px] h-[20px] flex items-center justify-center rounded-md drop-shadow-sm`}
             >
-              <span className="font-plusSans text-[12px]">{taskNumber}</span>
+              <span
+                className={`font-plusSans ${
+                  active && "bg-white"
+                } bg-active text-[12px]`}
+              >
+                {taskNumber}
+              </span>
             </div>
           )}
         </div>

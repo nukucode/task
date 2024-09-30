@@ -4,13 +4,14 @@ import Logo from "../../public/img/logo.png";
 import {
   ArrowsRightLeftIcon,
   PlusIcon,
-  EllipsisHorizontalIcon,
+  EllipsisHorizontalIcon
 } from "@heroicons/react/24/outline";
 import { SidebarItem } from "./SidebarItem";
 import { useState } from "react";
 
 function Sidebar() {
   const [OpenSidebar, setOpenSidebar] = useState(false);
+
   return (
     <>
       <div

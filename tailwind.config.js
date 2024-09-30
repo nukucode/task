@@ -3,18 +3,18 @@ module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     colors: {
       transparent: "transparent",
-      silverGray: "#EBEBEB",
+      silverGray: "#fcfcfc",
       whiteSmoke: "#F9F9F9",
       charcoal: "#2F2B43",
       white: "#FFFFFF",
-      active: "#f9f9f9",
+      active: "#f1f1f1",
       icon: "#d3d2d7",
-      grayText: "#a4a4a4",
+      grayText: "#a4a4a4"
     },
     screens: {
       am: "350px",
@@ -22,13 +22,13 @@ module.exports = {
       md: "768px",
       lg: "1024px",
       xl: "1280px",
-      "2xl": "1536px",
+      "2xl": "1536px"
     },
     extend: {
       fontFamily: {
-        plusSans: ["var(--font-jakarta-sans)"],
-      },
-    },
+        plusSans: ["var(--font-jakarta-sans)"]
+      }
+    }
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [require("tailwind-scrollbar-hide")]
 };
