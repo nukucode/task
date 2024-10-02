@@ -8,9 +8,11 @@ import { TaskContainer } from "./TaskContainer";
 import { data } from "../../data/data";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Home() {
   const [containers, setContainers] = useState(data);
+  const menu = useSelector((state) => state.menu.open);
 
   const reorder = (list, startIndex, endIndex) => {
     const results = Array.from(list);
@@ -33,9 +35,13 @@ function Home() {
   };
 
   return (
-    <main className=" relative overflow-auto z-[1] lg:ml-[300px] w-full py-5 px-5 lg:pr-[5rem]">
+    <main
+      className={`relative overflow-auto z-[1] ${
+        !menu && "lg:ml-[0px]"
+      } lg:ml-[300px] w-full py-5 px-5 lg:pr-[5rem]`}
+    >
       <Header />
-      <div className="w-full flex items-center justify-between lg:pl-[5rem]">
+      <div className={`w-full flex items-center justify-between lg:pl-[5rem]`}>
         <div>
           <h3 className="font-plusSans font-bold text-[20px]">
             Good Morning, Camerone 🤩

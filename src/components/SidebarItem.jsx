@@ -12,7 +12,7 @@ function SidebarItem({
   workspace,
   color,
   Icon,
-  add,
+  add
 }) {
   return (
     <>
@@ -28,7 +28,8 @@ function SidebarItem({
             </button>
             {workspace ? (
               <div
-                className={`w-[20px] h-[20px] border border-[${color}] rounded-md`}
+                className={`w-[20px] h-[20px] rounded-md`}
+                style={{ border: `1px ${color} solid` }}
               />
             ) : (
               <span>{emoji}</span>

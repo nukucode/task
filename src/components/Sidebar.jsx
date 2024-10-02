@@ -3,20 +3,21 @@ import Image from "next/image";
 import Logo from "../../public/img/logo.png";
 import {
   ArrowsRightLeftIcon,
-  PlusIcon,
   EllipsisHorizontalIcon
 } from "@heroicons/react/24/outline";
 import { SidebarItem } from "./SidebarItem";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../features/menuSlice";
+import { useSelector } from "react-redux";
 
 function Sidebar() {
-  const [OpenSidebar, setOpenSidebar] = useState(false);
-
+  const menu = useSelector((state) => state.menu.open);
+  const dispatch = useDispatch();
   return (
     <>
       <div
-        className={`fixed top-0 left-0 h-screen hidden lg:block min-w-[300px] ${
-          OpenSidebar && "-left-[500px]"
+        className={`fixed top-0 left-0 h-screen z-[999] lg:block min-w-[300px] ${
+          !menu ? "block lg:hidden" : "hidden lg:block"
         } bg-silverGray h-screen p-6 space-y-5`}
       >
         {/* First Container */}
@@ -28,7 +29,7 @@ function Sidebar() {
               <p className="font-plusSans text-[10px]">Camerone Williamson</p>
             </div>
           </div>
-          <button onClick={() => setOpenSidebar(true)}>
+          <button onClick={() => dispatch(toggleMenu(!menu))}>
             <ArrowsRightLeftIcon className="h-6" />
           </button>
         </div>
