@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import menuSlice from "../features/menuSlice";
+import buttonSlice from "../features/buttonSlice";
 
 export const store = configureStore({
   reducer: {
-    menu: menuSlice
+    button: buttonSlice
   }
 });
