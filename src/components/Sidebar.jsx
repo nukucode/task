@@ -7,11 +7,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { SidebarItem } from "./SidebarItem";
 import { useDispatch } from "react-redux";
-import { toggleMenu } from "../features/menuSlice";
+import { toggleMenu } from "../features/buttonSlice";
 import { useSelector } from "react-redux";
 
 function Sidebar() {
-  const menu = useSelector((state) => state.menu.open);
+  const menu = useSelector((state) => state.button.menu);
   const dispatch = useDispatch();
   return (
     <>

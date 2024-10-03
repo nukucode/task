@@ -1,10 +1,10 @@
 import { Squares2X2Icon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { openMenu } from "@/features/menuSlice";
+import { openMenu } from "@/features/buttonSlice";
 
 function Header() {
-  const menu = useSelector((state) => state.menu.open);
+  const menu = useSelector((state) => state.button.menu);
   const dispatch = useDispatch();
   return (
     <header
