@@ -39,7 +39,7 @@ function TaskContainer({ title, taskCount, icon, tasks }) {
           </div>
         </div>
 
-        <div className={`py-3 pl-5 ${expend && "hidden"}`}>
+        <div className={`py-3 md:pl-5 ${expend && "hidden"}`}>
           {React.Children.toArray(
             tasks.map((task, i) => (
               <Task

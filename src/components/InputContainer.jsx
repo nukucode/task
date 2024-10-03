@@ -1,4 +1,4 @@
-import { ChevronDownIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import DragIndicatorIcon from "@mui/icons-material/DragIndicator";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardCommandKeyIcon from "@mui/icons-material/KeyboardCommandKeyOutlined";
@@ -9,8 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function InputContainer() {
   const [focus, setFocus] = useState(false);
+  const [category, setCategory] = useState("personal");
   const [dateRange, setDateRange] = useState([null, null]);
-
   const [startDate, endDate] = dateRange;
 
   return (
@@ -39,22 +39,31 @@ function InputContainer() {
           </div>
         ) : (
           <div className="flex items-center space-x-2">
-            <div className="bg-silverGray w-[25px] h-[25px] flex items-center justify-center rounded-md">
+            <div className="bg-silverGray h-[25px] flex items-center justify-center rounded-md">
               <DatePicker
-                selectsRange={true}
+                selectsRange
                 showIcon
+                selected={startDate}
                 icon={<CalendarIcon />}
                 startDate={startDate}
                 endDate={endDate}
                 onChange={(date) => setDateRange(date)}
                 minDate={new Date()}
+                placeholderText="Date"
+                className="w-[70px] outline-none"
               />
             </div>
-            <div className="bg-silverGray h-[25px] px-[5px] flex items-center justify-center rounded-md  space-x-1">
-              <span>👤</span>
-              <p className="font-plusSans font-light text-[12px]">Personal</p>
-              <ChevronDownIcon className="h-5" />
-            </div>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="bg-silverGray h-[25px] px-[5px] flex items-center justify-center rounded-md outline-none space-x-2"
+            >
+              <option value="personal">👤 Personal</option>
+              <option value="home">🏠 Home</option>
+              <option value="complete">✅ Complete</option>
+              <option value="today">🗓️ Today</option>
+              <option value="work">💼 Work</option>
+            </select>
           </div>
         )}
       </div>

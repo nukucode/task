@@ -6,13 +6,15 @@ import { InputContainer } from "./InputContainer";
 import { TipContainer } from "./TipContainer";
 import { TaskContainer } from "./TaskContainer";
 import { data } from "../../data/data";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { TaskEditor } from "./TaskEditor";
+import { selectButton } from "@/features/buttonSlice";
 
 function Home() {
   const [containers, setContainers] = useState(data);
-  const menu = useSelector((state) => state.menu.open);
+  const { taskEditor, menu } = useSelector(selectButton);
 
   const reorder = (list, startIndex, endIndex) => {
     const results = Array.from(list);
@@ -64,7 +66,7 @@ function Home() {
                 <Draggable key={item.id} draggableId={item.id} index={i}>
                   {(provided) => (
                     <TaskContainer
-                      ref={provided.innerRef}
+                      innerRef={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       key={item.id}
@@ -81,6 +83,7 @@ function Home() {
           )}
         </Droppable>
       </DragDropContext>
+      {taskEditor && <TaskEditor />}
     </main>
   );
 }
