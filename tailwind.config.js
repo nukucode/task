@@ -14,7 +14,8 @@ module.exports = {
       white: "#FFFFFF",
       active: "#f1f1f1",
       icon: "#d3d2d7",
-      grayText: "#a4a4a4"
+      grayText: "#a4a4a4",
+      black: "#000000"
     },
     screens: {
       am: "350px",
