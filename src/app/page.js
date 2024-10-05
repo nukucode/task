@@ -1,14 +1,18 @@
 import { Home } from "@/components/Home";
 import { Sidebar } from "@/components/Sidebar";
-import {  Modal } from "@/components/Modal";
+import { Modal } from "@/components/Modal";
+import { Welcome } from "@/components/Welcome";
 
 function page({ searchParams }) {
-  const show = searchParams?.show;
+  const modalShow = searchParams?.show;
+  const welcomeShow = searchParams?.welcome;
+
   return (
     <div className="flex bg-white">
       <Sidebar />
       <Home />
-      {show && <Modal />}
+      {!welcomeShow && <Welcome />}
+      {modalShow && <Modal />}
     </div>
   );
 }
