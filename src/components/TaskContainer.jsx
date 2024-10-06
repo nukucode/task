@@ -16,21 +16,23 @@ function TaskContainer({ title, taskCount, icon, tasks }) {
       <div className="w-full">
         <div>
           <div className="flex items-center space-x-[6px]">
-            {expend ? (
-              <button
-                onClick={() => setExpend(!expend)}
-                className="cursor-pointer"
-              >
-                <ChevronUpIcon className="h-5" />
-              </button>
-            ) : (
-              <button
-                onClick={() => setExpend(!expend)}
-                className="cursor-pointer"
-              >
-                <ChevronDownIcon className="h-5" />
-              </button>
-            )}
+            <button
+              onClick={() => setExpend(!expend)}
+              className="cursor-pointer relative"
+            >
+              <ChevronUpIcon
+                className={`h-5 transition-all absolute top-0 left-0 duration-200 ease-in-out ${
+                  expend ? " visible opacity-100" : " invisible opacity-0"
+                }`}
+              />
+
+              <ChevronDownIcon
+                className={`h-5 transition-all  duration-200 ease-in-out ${
+                  !expend ? " visible opacity-100" : " invisible opacity-0"
+                }`}
+              />
+            </button>
+
             <span>{icon}</span>
             <h3 className="font-plusSans">{title}</h3>
             <div className="bg-active w-[20px] h-[20px] flex items-center justify-center rounded-md drop-shadow-sm">
@@ -39,7 +41,13 @@ function TaskContainer({ title, taskCount, icon, tasks }) {
           </div>
         </div>
 
-        <div className={`py-3 md:pl-5 ${expend && "hidden"}`}>
+        <div
+          className={`py-3 md:pl-5 transition-all duration-200 ease-in-out ${
+            !expend
+              ? "visible opacity-100 translate-y-0 max-h-auto"
+              : "invisible opacity-0 -translate-y-6 max-h-0"
+          }`}
+        >
           {React.Children.toArray(
             tasks.map((task, i) => (
               <Task

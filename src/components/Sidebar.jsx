@@ -8,18 +8,19 @@ import {
 } from "@heroicons/react/24/outline";
 import { SidebarItem } from "./SidebarItem";
 import { useDispatch } from "react-redux";
-import { toggleMenu } from "../features/buttonSlice";
+import { toggleMenu, toggleModal } from "../features/buttonSlice";
 import { useSelector } from "react-redux";
-import Link from "next/link";
 
 function Sidebar() {
-  const menu = useSelector((state) => state.button.menu);
+  const { menu, modal } = useSelector((state) => state.button);
   const dispatch = useDispatch();
   return (
     <>
       <div
-        className={`fixed top-0 left-0 h-screen z-[999] lg:block min-w-[300px] ${
-          !menu ? "block lg:hidden" : "hidden lg:flex"
+        className={`fixed top-0 left-0 h-screen z-[999] block transition-all duration-200 ease-in-out min-w-[300px] ${
+          !menu
+            ? "invisible opacity-0 -translate-x-[200px]"
+            : "visible opacity-100 translate-x-0"
         } bg-silverGray h-screen p-6 flex flex-col`}
       >
         <div className="flex-1 space-y-5">
@@ -80,14 +81,15 @@ function Sidebar() {
           </div>
         </div>
         <div>
-          <Link href='/?show=true'>
-            <button className="bg-[#a2dcad] w-full h-[40px] rounded-md  transition-all ease-in-out duration-200 hover:bg-[#7dce8c]  flex items-center space-x-1 justify-center">
-              <Cog6ToothIcon className="h-6 text-[#3da24f]" />
-              <span className="text-[#3da24f] font-plusSans text-[14px]">
-                Setting
-              </span>
-            </button>
-          </Link>
+          <button
+            onClick={() => dispatch(toggleModal(!modal))}
+            className="bg-[#a2dcad] w-full h-[40px] rounded-md  transition-all ease-in-out duration-200 hover:bg-[#7dce8c]  flex items-center space-x-1 justify-center"
+          >
+            <Cog6ToothIcon className="h-6 text-[#3da24f]" />
+            <span className="text-[#3da24f] font-plusSans text-[14px]">
+              Setting
+            </span>
+          </button>
         </div>
       </div>
     </>

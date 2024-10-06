@@ -29,8 +29,9 @@ function Task({ task, isCompleted, date, assign }) {
 
   return (
     <div
-      className={`flex justify-between items-center py-[6px] px-[0.8rem] hover:bg-active rounded-lg ${
-  isCompleted && "bg-[#f9f9f9]"} my-[2px]`}
+      className={`flex justify-between items-center py-[6px] px-[0.8rem] transition-all duration-200 ease-in-out hover:bg-active rounded-lg ${
+        isCompleted && "bg-[#f9f9f9]"
+      } my-[2px]`}
     >
       <div className="flex items-center">
         <button className="hidden md:block">
@@ -38,11 +39,15 @@ function Task({ task, isCompleted, date, assign }) {
         </button>
         <button
           onClick={() => setIsDone(!isDone)}
-          className={`w-[20px] h-[20px] flex items-center justify-center cursor-pointer border ${
-            isDone && "bg-[#000]"
+          className={`w-[20px] h-[20px] flex items-center justify-center cursor-pointer border transition-all duration-200 ease-in-out ${
+            isDone ? "bg-[#000]" : "bg-none"
           } rounded-md`}
         >
-          {isDone && <CheckIcon className="h-6 text-white" />}
+          <CheckIcon
+            className={`h-6 text-white transition-opacity duration-200 ease-in-out ${
+              isDone ? "visible opacity-100" : "invisible opacity-0"
+            } `}
+          />
         </button>
         <p
           className={`font-plusSans pl-2 text-[14px] ${

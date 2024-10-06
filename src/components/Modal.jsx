@@ -10,21 +10,25 @@ import {
   ChevronDownIcon,
   ChevronUpIcon
 } from "@heroicons/react/24/outline";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleModal } from "@/features/buttonSlice";
 
 // => Desktop & Tablets & Mobile Modal
 export const Modal = () => {
-  const router = useRouter();
-
+  const dispatch = useDispatch();
+  const { modal } = useSelector((state) => state.button);
   return (
     <div
-      onClick={(e) => {
-        router.back();
-      }}
-      className="bg-charcoal/50 w-screen h-screen fixed z-[999] flex items-center justify-center"
+      onClick={(e) => dispatch(toggleModal(!modal))}
+      className={`bg-charcoal/50 w-screen ${
+        modal ? "visible opacity-100 " : "invisible opacity-0"
+      } transition-all duration-200 ease-in-out h-screen fixed z-[999] flex items-center justify-center`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="min-w-[700px] hidden h-[450px] md:flex mx-[1rem]"
+        className={`min-w-[700px] hidden h-[450px] md:flex mx-[1rem] transition-transform duration-200 ease-in-out ${
+          modal ? "translate-y-0" : "translate-y-6"
+        }`}
       >
         <div className="flex-[0.3] bg-white rounded-tl-xl rounded-bl-xl p-4">
           <h3 className="font-plusSans text-[16px] font-semiBold">Settings</h3>
@@ -70,7 +74,7 @@ export const Modal = () => {
       >
         <div className=" flex items-center justify-between pb-3 border-b border-black/30">
           <h3 className="font-plusSans text-[16px] font-semibold">Settings</h3>
-          <button onClick={() => router.back()}>
+          <button onClick={() => dispatch(toggleModal(!modal))}>
             <XMarkIcon className="h-6" />
           </button>
         </div>

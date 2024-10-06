@@ -7,7 +7,13 @@ function TipContainer() {
   const [close, setClose] = useState(false);
 
   return (
-    <div className={`flex my-5 lg:pl-[2rem] ${close && "hidden"}`}>
+    <div
+      className={`flex my-5 lg:pl-[2rem] transition-all duration-200 ease-in-out ${
+        !close
+          ? "visible opacity-100 translate-x-0"
+          : "invisible opacity-0 max-h-0 translate-x-6"
+      }`}
+    >
       <div className="hidden lg:flex">
         <AddIcon className="text-icon" />
         <DragIndicatorIcon className="text-icon" />

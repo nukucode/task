@@ -5,7 +5,8 @@ const buttonSlice = createSlice({
   name: "button",
   initialState: {
     menu: true,
-    taskEditor: false
+    taskEditor: false,
+    modal: false
   },
   reducers: {
     // Menu Reducers
@@ -20,9 +21,15 @@ const buttonSlice = createSlice({
     // Task Editor Reducers
     toggleTaskEditor(state, action) {
       state.taskEditor = action.payload;
+    },
+
+    // toggle Modal Reducers
+    toggleModal(state, action) {
+      state.modal = action.payload;
     }
   }
 });
 export const selectButton = (state) => state.button;
-export const { toggleMenu, openMenu, toggleTaskEditor } = buttonSlice.actions;
+export const { toggleMenu, openMenu, toggleTaskEditor, toggleModal } =
+  buttonSlice.actions;
 export default buttonSlice.reducer;

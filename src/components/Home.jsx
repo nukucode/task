@@ -14,7 +14,7 @@ import { selectButton } from "@/features/buttonSlice";
 
 function Home() {
   const [containers, setContainers] = useState(data);
-  const { taskEditor, menu } = useSelector(selectButton);
+  const { menu } = useSelector(selectButton);
 
   const reorder = (list, startIndex, endIndex) => {
     const results = Array.from(list);
@@ -38,9 +38,9 @@ function Home() {
 
   return (
     <main
-      className={`relative overflow-auto z-[1] ${
-        !menu && "lg:ml-[0px]"
-      } lg:ml-[300px] w-full py-5 px-5 lg:pr-[5rem]`}
+      className={`relative overflow-auto z-[1] w-full py-5 px-5 lg:pr-[5rem] transition-padding duration-200 ease-in-out ${
+        menu ? "lg:ml-[300px]" : "ml-0"
+      }`}
     >
       <Header />
       <div className={`w-full flex items-center justify-between lg:pl-[5rem]`}>
@@ -83,7 +83,7 @@ function Home() {
           )}
         </Droppable>
       </DragDropContext>
-      {taskEditor && <TaskEditor />}
+      <TaskEditor />
     </main>
   );
 }

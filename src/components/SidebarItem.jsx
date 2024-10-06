@@ -18,7 +18,7 @@ function SidebarItem({
     <>
       {!add ? (
         <div
-          className={`flex items-center justify-between mt-[2px] hover:bg-active transition-all duration-150 ease-in-out cursor-pointer w-full p-2 rounded ${
+          className={`flex items-center justify-between mt-[2px] hover:bg-active transition-all duration-200 ease-in-out cursor-pointer w-full p-2 rounded ${
             active && "bg-active"
           }`}
         >

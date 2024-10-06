@@ -1,8 +1,4 @@
-import {
-  ChevronDoubleRightIcon,
-  XMarkIcon,
-  ChevronDownIcon
-} from "@heroicons/react/24/outline";
+import { ChevronDoubleRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { selectButton, toggleTaskEditor } from "@/features/buttonSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -22,7 +18,15 @@ function TaskEditor() {
   const { taskEditor } = useSelector(selectButton);
 
   return (
-    <div className="fixed top-0 right-0 h-screen flex flex-col bg-white  w-full lg:w-[350px] z-[999] border border-l border-active p-5">
+    <div
+      className={`fixed top-0 right-0 h-screen flex flex-col bg-white w-full lg:w-[350px] z-[999] border border-l border-active p-5
+        transition-all duration-200 ease-in-out ${
+          taskEditor
+            ? " opacity-100 visible translate-x-0"
+            : " opacity-0 invsible translate-x-[700px]"
+        }
+        `}
+    >
       <div className="space-y-5 flex-1">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
