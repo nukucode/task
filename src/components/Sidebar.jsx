@@ -8,12 +8,18 @@ import {
 } from "@heroicons/react/24/outline";
 import { SidebarItem } from "./SidebarItem";
 import { useDispatch } from "react-redux";
-import { toggleMenu, toggleModal } from "../features/buttonSlice";
+import {
+  toggleMenu,
+  toggleModal,
+  toggleCreateTask
+} from "../features/buttonSlice";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 function Sidebar() {
-  const { menu, modal } = useSelector((state) => state.button);
+  const { menu, modal, createTask } = useSelector((state) => state.button);
   const dispatch = useDispatch();
+
   return (
     <>
       <div
@@ -27,9 +33,15 @@ function Sidebar() {
           {/* First Container */}
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <Image src={Logo} alt="logo" className="w-10 h-10" />
+              <Link href="/">
+                <Image src={Logo} alt="logo" className="w-10 h-10" />
+              </Link>
               <div>
-                <h3 className="font-plusSans font-bold text-[14px]">Plan.io</h3>
+                <Link href="/">
+                  <h3 className="font-plusSans font-bold text-[14px]">
+                    Plan.io
+                  </h3>
+                </Link>
                 <p className="font-plusSans text-[10px]">Camerone Williamson</p>
               </div>
             </div>
@@ -47,7 +59,10 @@ function Sidebar() {
             <SidebarItem title="Today" emoji="📆" taskNumber={4} />
             <SidebarItem title="Personal" emoji="👤" taskNumber={6} />
             <SidebarItem title="Work" emoji="💼" taskNumber={5} />
-            <SidebarItem add title="Create new list" />
+            <SidebarItem
+              fn={() => dispatch(toggleCreateTask(!createTask))}
+              title="Create new list"
+            />
           </div>
 
           {/* Third Container */}
@@ -76,7 +91,10 @@ function Sidebar() {
                 workspace
                 color="#3498db"
               />
-              <SidebarItem add title="Create new workspace" />
+              <SidebarItem
+                fn={() => dispatch(toggleCreateTask(!createTask))}
+                title="Create new workspace"
+              />
             </div>
           </div>
         </div>
@@ -86,9 +104,7 @@ function Sidebar() {
             className="bg-[#a2dcad] w-full h-[40px] rounded-md  transition-all ease-in-out duration-200 hover:bg-[#7dce8c]  flex items-center space-x-1 justify-center"
           >
             <Cog6ToothIcon className="h-6 text-[#3da24f]" />
-            <span className="text-[#3da24f] font-plusSans text-[14px]">
-              Setting
-            </span>
+            <p className="text-[#3da24f] font-plusSans text-[14px]">Setting</p>
           </button>
         </div>
       </div>

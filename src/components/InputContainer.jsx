@@ -24,6 +24,7 @@ function InputContainer() {
         <PlusIcon width={20} />
         <input
           type="text"
+          autoFocus
           placeholder="New Task"
           className="outline-none border-none bg-transparent w-full h-full"
           onFocus={() => setFocus(true)}
@@ -56,7 +57,7 @@ function InputContainer() {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="bg-silverGray h-[25px] px-[5px] flex items-center justify-center rounded-md outline-none space-x-2"
+              className="bg-silverGray h-[25px] border-none px-[5px] flex items-center justify-center rounded-md outline-none space-x-2"
             >
               <option value="personal">👤 Personal</option>
               <option value="home">🏠 Home</option>

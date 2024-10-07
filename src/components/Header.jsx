@@ -16,9 +16,6 @@ function Header() {
       <button className="flex bg-silverGray w-[35px] h-[35px] rounded-md items-center justify-center">
         <Bars3Icon className="h-6" />
       </button>
-
-      <h1>{menu}</h1>
-
       <button className="flex bg-silverGray w-[35px] h-[35px] rounded-md items-center justify-center">
         <Squares2X2Icon className="h-6" />
       </button>

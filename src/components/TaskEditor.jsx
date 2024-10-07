@@ -93,6 +93,7 @@ function TaskEditor() {
 
         <textarea
           className="border border-icon bg-silverGray outline-none rounded-xl w-full h-[180px] py-2 px-3 text-[12px] font-plusSans"
+          defaultValue={random}
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />

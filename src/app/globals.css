@@ -8,4 +8,8 @@
 }
 
 
-
+@layer base {
+    .btn {
+        @apply font-plusSans h-[55px] rounded-xl px-5 transition-all duration-200 ease-in-out;
+    }
+}
