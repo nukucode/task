@@ -19,7 +19,7 @@ export const data = [
           "Finish the sales presentation for the client meeting at 2:00 PM",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false,
+        status: 'done',
         assign: [
           {
             id: "1",
@@ -40,7 +40,7 @@ export const data = [
         title: "Send follow-up emails to potential leads",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false
+        status: 'not-started'
       },
 
       {
@@ -48,7 +48,7 @@ export const data = [
         title: "Review and approve the marketing budget for Q4",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: true,
+        status: 'done',
         assign: [
           {
             id: "1",
@@ -81,8 +81,7 @@ export const data = [
         title: "Attend the teammeeting at 10:30 AM",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: true
-      }
+        status: 'not-started'      }
     ]
   },
   {
@@ -96,7 +95,7 @@ export const data = [
         title: "Do 30 minutes of physical exercise",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false
+        status: 'done'
       },
 
       {
@@ -104,7 +103,7 @@ export const data = [
         title: "Read one chapter of the book you want to finish",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false,
+        status: 'not-started',
         assign: [
           {
             id: "1",
@@ -131,7 +130,7 @@ export const data = [
         title: "Pay the eteetricity bill and ether bill",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: true,
+        status: 'done',
         assign: [
           {
             id: "1",
@@ -152,7 +151,7 @@ export const data = [
         title: "Take 10 minutes for meditation or deep breathing",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false
+        status: 'not-started'
       }
     ]
   },
@@ -167,15 +166,14 @@ export const data = [
         title: "Complete Monthly Report",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: true
-      },
+        status: 'not-started'      },
 
       {
         _id: "2",
         title: "Send subcribe-up emails to potential leads",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false
+        status: 'done'
       },
 
       {
@@ -183,15 +181,14 @@ export const data = [
         title: "Review and approve the marketing budget for Q3",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: true
-      },
+        status: 'not-started'      },
 
       {
         id: "4",
         title: "Attend the teammeeting at 12:30 AM",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: false
+        status: 'done'
       }
     ]
   },
@@ -207,8 +204,7 @@ export const data = [
           "Finish the sales presentation for the client meeting at 2:00 PM",
         note: "",
         dueDate: "2024-09-27",
-        isCompleted: true
-      }
+        status: 'not-started'      }
     ]
   }
 ];
@@ -247,4 +243,116 @@ export const colors = [
   "#52be80",
   "#1abc9c",
   "#82e0aa"
+];
+
+export const tasksData = [
+  {
+    _id: "1",
+    title: "Finish the sales presentation for the client meeting at 2:00 PM",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "not-started",
+    assign: [
+      {
+        id: "1",
+        name: "John Doe",
+        avatar: Avatar1
+      },
+
+      {
+        id: "2",
+        name: "Alya Smith",
+        avatar: Avatar2
+      }
+    ]
+  },
+
+  {
+    _id: "2",
+    title: "Send follow-up emails to potential leads",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "done"
+  },
+
+  {
+    _id: "3",
+    title: "Review and approve the marketing budget for Q4",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "not-started",
+    assign: [
+      {
+        id: "1",
+        name: "Kira Knose",
+        avatar: Avatar3
+      },
+
+      {
+        id: "2",
+        name: "Utahime Gojo",
+        avatar: Avatar4
+      },
+
+      {
+        id: "3",
+        name: "Nobara Kasube",
+        avatar: Avatar5
+      },
+
+      {
+        id: "4",
+        name: "Megumi Fushiguro",
+        avatar: Avatar6
+      }
+    ]
+  },
+
+  {
+    _id: "4",
+    title: "Attend the teammeeting at 10:30 AM",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "done"
+  },
+
+  {
+    _id: "4",
+    title: "Go To collage with Friends",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "done"
+  },
+
+  {
+    _id: "4",
+    title: "Attend concert of the Sidhu Moosewala",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "not-started"
+  },
+
+  {
+    _id: "4",
+    title: "Travel with bro at Holidays",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "done"
+  },
+
+  {
+    _id: "4",
+    title: "Wacthing movie of the Gojo Staturo",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "not-started"
+  },
+
+  {
+    _id: "4",
+    title: "Meetup with chirs evans",
+    note: "",
+    dueDate: "2024-09-27",
+    status: "not-started "
+  }
 ];
