@@ -6,31 +6,24 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { selectButton, toggleTaskEditor } from "@/features/buttonSlice";
+import { colors } from "../../data/data";
 
-function Task({ task, isCompleted, date, assign }) {
-  const [isDone, setIsDone] = useState(isCompleted);
-
+function Task({ task, status, date, assign }) {
+  const [isDone, setIsDone] = useState(status === "done");
   const dispatch = useDispatch();
   const { taskEditor } = useSelector(selectButton);
 
-  let randomColors = [
-    "#E01F16",
-    "#E09216",
-    "#00958A",
-    "#8391a1",
-    "#4B68B8",
-    "#B8994B"
-  ];
-
   // choose a randomColor function
   const randomColor = () => {
-    return randomColors[Math.floor(Math.random() * randomColors.length)];
+    return colors[Math.floor(Math.random() * colors.length)];
   };
+
+  console.log('✊', status)
 
   return (
     <div
       className={`flex justify-between items-center py-[6px] px-[0.8rem] transition-all duration-200 ease-in-out hover:bg-active rounded-lg ${
-        isCompleted && "bg-[#f9f9f9]"
+        status == "done" && "bg-[#f9f9f9]"
       } my-[2px]`}
     >
       <div className="flex items-center">
@@ -51,7 +44,7 @@ function Task({ task, isCompleted, date, assign }) {
         </button>
         <p
           className={`font-plusSans pl-2 text-[14px] ${
-            isCompleted && "line-through text-[#000000]/30"
+            status == "done" && "line-through text-[#000000]/30"
           }`}
         >
           {task}

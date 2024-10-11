@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDoubleRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { selectButton, toggleTaskEditor } from "@/features/buttonSlice";
 import { useDispatch } from "react-redux";

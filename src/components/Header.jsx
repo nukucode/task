@@ -1,3 +1,4 @@
+"use client"
 import { Squares2X2Icon, Bars3Icon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";

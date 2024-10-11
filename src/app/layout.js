@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Plus_Jakarta_Sans } from "@next/font/google";
 import { Providers } from "./Providers";
+import { AppLayout } from "@/components/AppLayout";
 
 export const metadata = {
   title: "Plan.io",
@@ -42,7 +43,9 @@ export default function RootLayout({ children }) {
   return (
     <Providers>
       <html lang="en" className={`${PlusJakartaSans.variable} font-sans`}>
-        <body>{children}</body>
+        <body>
+          <AppLayout>{children}</AppLayout>
+        </body>
       </html>
     </Providers>
   );

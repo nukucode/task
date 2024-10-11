@@ -9,9 +9,7 @@ import { data } from "../../data/data";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { TaskEditor } from "./TaskEditor";
 import { selectButton } from "@/features/buttonSlice";
-import { CreateTask } from "./CreateTask";
 
 function Home() {
   const [containers, setContainers] = useState(data);
@@ -84,8 +82,7 @@ function Home() {
           )}
         </Droppable>
       </DragDropContext>
-      <CreateTask />
-      <TaskEditor />
+
     </main>
   );
 }

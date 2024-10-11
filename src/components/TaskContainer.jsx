@@ -52,7 +52,7 @@ function TaskContainer({ title, taskCount, icon, tasks }) {
             tasks.map((task, i) => (
               <Task
                 task={task.title}
-                isCompleted={task.isCompleted}
+                status={task.status}
                 assign={task.assign}
               />
             ))
